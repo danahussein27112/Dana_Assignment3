@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col col-12">
+        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+            <div formGroupName="fullName">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" formControlName="firstName" >
+                <span *ngIf="!createForm.get('firstName')?.valid && createForm.get('firstName')?.touched" class="alert-danger">First Name is required</span>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" formControlName="lastName" >
+            </div>
+        </div>
+
+            <div class="form-group">
+                <label for="age">phone Number</label>
+                <input type="number" class="form-control" formControlName="phoneNum" >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" formControlName="email" >
+            </div>
+
+            <div class="form-group">
+                <label for="spi">specialization</label>
+                <select formControlName="spi" class="form-control">
+                    <option>sp1</option>
+                    <option>sp2</option>
+                    <option>sp3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="notes">Notes</label>
+                <input type="text" class="form-control" formControlName="notes" >
+            </div>
+            <div class="form-group">
+                <label for="salary">Mounthly Salary</label>
+                <input type="text" class="form-control" formControlName="salary" >  </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" formControlName="Address" >
+                </div>
+
+            <br/>
+            <button class="btn btn-primary btn-sm" type="submit" [disabled]="!createForm.valid">Submit</button>
+        </form>
+        
+    </div>
+</div>

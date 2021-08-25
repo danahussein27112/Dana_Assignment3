@@ -1,0 +1,41 @@
+<div class="new-appointment-form-container">
+  <form #appointmentForm="ngForm" (submit)="save(); appointmentForm.reset()">
+
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="text"
+             class="form-control"
+             name="date"
+             id="date"
+             [(ngModel)]="model.date">
+    </div>
+
+    <div class="form-group">
+      <label for="DoctorName">Doctor name</label>
+      <input type="text"
+             class="form-control"
+             name="DoctorName"
+             id="DoctorName"
+             [(ngModel)]="model.DoctorName">
+    </div>
+    <div class="form-group">
+      <label for="patientName">patient name</label>
+      <input type="text"
+             class="form-control"
+             name="patientName"
+             id="patientName"
+             [(ngModel)]="model.patientName">
+    </div>
+    <div class="form-group">
+      <label for="type">Type of appointment</label>
+      <input type="text"
+             class="form-control"
+             name="type"
+             id="type"
+             [(ngModel)]="model.type">
+    </div>
+
+
+    <input type="submit" class="btn btn-primary" value="Save">
+  </form>
+</div>
