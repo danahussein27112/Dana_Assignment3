@@ -16,6 +16,7 @@ import { getAllCompanies, getIsLoading } from 'src/app/Store/Selectors/Company.s
 export class CompaniesComponent implements OnInit {
 
   companies$?: Observable<Company[]>;
+  displayedColumns: string[] = ['ID', 'Company Name', 'Alias', 'Country'];
 
   companyToBeUpdated!: Company;
 
@@ -39,9 +40,11 @@ export class CompaniesComponent implements OnInit {
 
   }
 
-  delete(Id: number) {
-    this.store.dispatch(companyActionTypes.deleteCompany({ Id }));
-  }
+  delete(id: number) {
+    if (confirm('Are you sure do you want to delete this company?')) {
+    this.store.dispatch(companyActionTypes.deleteCompany({ id }));
+    this.store.dispatch(companyActionTypes.deleteSuccessAction({id}));
+  }}
 
   showUpdateForm(company: Company) {
     this.companyToBeUpdated = { ...company };

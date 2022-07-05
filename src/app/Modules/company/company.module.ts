@@ -11,7 +11,7 @@ import { CompanyCreateComponent } from '../../Components/company-create/company-
 
 @NgModule({
   declarations: [
-    CompaniesComponent
+    
   ],
   imports: [
     CommonModule,
@@ -21,7 +21,6 @@ import { CompanyCreateComponent } from '../../Components/company-create/company-
   ],
   providers: [CompanyService],
   bootstrap: [],
-  exports: [ CompaniesComponent,CompanyCreateComponent]
 
 })
 export class CompanyModule { }

@@ -15,7 +15,7 @@ export const getCompany = createSelector(
  
 export const getSelected = createSelector(
   getState,
-    (state: CompanyState) => state.selectedCompany
+    (state: CompanyState) => state.combaniesLoaded
 );
  
 export const getError = createSelector(

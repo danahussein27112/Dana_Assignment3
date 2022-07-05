@@ -10,7 +10,7 @@ export interface CompanyState {
   isLoading: boolean;
   item: Company[]
   combaniesLoaded : boolean;
-  selectedCompany:Company
+  //selectedCompany:Company
 }
 
 export const initialState: CompanyState = {
@@ -18,7 +18,7 @@ export const initialState: CompanyState = {
   combaniesLoaded:false,
   isLoading:true,
   item:[],
-  selectedCompany:{id:0,alias:'undefined',companyName:'undefined',countryId:0}
+  //selectedCompany:{id:0,alias:'undefined',companyName:'undefined',countryId:0,}
 
   
 };

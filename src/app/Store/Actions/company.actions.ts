@@ -42,7 +42,7 @@ export const deleteSuccessAction = createAction(
 
 export const deleteCompany = createAction(
   '[Companies List Operations] Delete Company',
-  props<{Id: number}>()
+  props<{id: number}>()
 );
 
 export const updateCompany = createAction(

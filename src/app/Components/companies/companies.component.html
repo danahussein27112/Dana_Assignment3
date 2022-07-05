@@ -1,8 +1,22 @@
 <h1>List of companies</h1>
-
-<div *ngFor="let entity of (companies$ | async)">
-  <p>
-{{entity.id}}) Company Name : {{entity.companyName}}
-<br>Alias : {{entity.alias}}
-  </p>
+<div class="col-sm-6 align-bottom">
+  <button class="button" routerLink="/create-company">Create new company</button>
 </div>
+
+<table id="companies">
+      <tr>
+          <th>ID</th>
+          <th>Company Name</th>
+          <th>Alias</th>
+          <th>Country</th>
+          <th>Actions</th>
+      </tr>
+      <tr *ngFor="let entity of (companies$ | async)">
+          <td>{{entity.id}}</td>
+          <td>{{entity.companyName}}</td>
+          <td>{{entity.alias}}</td>
+          <td>{{entity.country.name}}</td>
+          <button type="submit" class="btn btn-success">Edit</button>
+          <button type="button" class="btn btn-success" (click)="delete(entity.id)">Delete</button>
+      </tr>
+</table>

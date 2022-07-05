@@ -35,7 +35,7 @@ export class CompanyEffects {
   deleteCompany$ = createEffect(() =>
     this.actions$.pipe(
       ofType(companyActionTypes.deleteCompany),
-      concatMap((action) => this.companyService.delete(action.Id))
+      concatMap((action) => this.companyService.delete(action.id))
     ),
     {dispatch: false}
   );
