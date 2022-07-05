@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 500px;
+
+}
+
+th.mat-header-cell {
+    text-align: left;
+    max-width: 300px;
+}
+
+h1{
+    font-size: 25px;
+    margin: 10px;
+    font-weight:bold;
+}
+
+th{
+    font-size: 15px;
+    font-weight: bold;
+}

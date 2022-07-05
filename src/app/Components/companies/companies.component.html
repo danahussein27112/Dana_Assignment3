@@ -1,0 +1,8 @@
+<h1>List of companies</h1>
+
+<div *ngFor="let entity of (companies$ | async)">
+  <p>
+{{entity.id}}) Company Name : {{entity.companyName}}
+<br>Alias : {{entity.alias}}
+  </p>
+</div>
