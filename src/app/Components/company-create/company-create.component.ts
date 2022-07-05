@@ -25,9 +25,9 @@ export class CompanyCreateComponent implements OnInit {
     }
 
 
-    const company: Company = {
-      companyName: submittedForm.value.name, alias: submittedForm.value.alias,
-      id:0,countryId:0
+    const items: Company = {
+      companyName: submittedForm.value.name, alias: submittedForm.value.alias, country: submittedForm.value.country.id,
+      id: 0
     };
    this.store.dispatch(createCompany({items}));
 
