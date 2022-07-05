@@ -29,7 +29,7 @@ export class CompanyCreateComponent implements OnInit {
       companyName: submittedForm.value.name, alias: submittedForm.value.alias,
       id:0,countryId:0
     };
-  //  this.store.dispatch(createCompany({items}));
+   this.store.dispatch(createCompany({items}));
 
   }
 }
