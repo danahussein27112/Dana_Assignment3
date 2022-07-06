@@ -2,23 +2,23 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
 import { Observable, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { Country } from 'src/app/Modules/country/country.model';
 import { CurrencyService } from 'src/app/Modules/currency/currecny.service';
 import * as currencyActions from '../Actions/Currency.actions';
-
 @Injectable()
-export class CountryEffects {
+export class CurrencyEffects {
   constructor(private dataService: CurrencyService, private actions$: Actions) {}
   
-   loadCountryRequestEffect$ = createEffect(() => this.actions$.pipe(
+  loadCurrencyRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(currencyActions.loadCurrencyRequestAction),
-      switchMap(countryAction => {
+      switchMap(currencyAction => {
         const subject = "currency";
-        return this.dataService.get(currencyActions.id).pipe(
+        return this.dataService.getcurrecny(currencyAction.id).pipe(
           map((currency: any) => {
-              return currencyActions.currencyActions.loadCurrencySuccessAction({ currency })
+              return currencyActions.CurrencyActions.loadCurrencySuccessAction({ currency })
           }),
           catchError((error: any) => {
-            return observableOf(currencyActions.loadCountryFailureAction({ error }))
+            return observableOf(currencyActions.loadCurrencyFailureAction({ error }))
           })
         )
       })
@@ -27,7 +27,7 @@ export class CountryEffects {
   loadRequestEffect$ =  createEffect(() => this.actions$.pipe(
     ofType(currencyActions.loadRequestAction),
       switchMap(action => {
-        return this.dataService.getCountries().pipe(
+        return this.dataService.getCurrencies().pipe(
           map((items: any) => {
               return currencyActions.loadSuccessAction({ items })
           }),
@@ -42,7 +42,7 @@ export class CountryEffects {
     ofType(currencyActions.saveRequestAction),
       switchMap(action => {
         const subject = "currency";      
-        return this.dataService.create(action.item).pipe(
+        return this.dataService.savecurrecny(action.item).pipe(
           map((item: any) => {
               return currencyActions.saveSuccessAction({ item })
           }),

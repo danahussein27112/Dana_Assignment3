@@ -1,0 +1,25 @@
+<h1>List of currencies</h1>
+<div class="col-sm-6 align-bottom">
+  <button class="button" routerLink="/create-country">Create new currency</button>
+</div>
+
+<table id="countries">
+      <tr>
+          <th>ID</th>
+          <th> Name</th>
+          <th>code</th>
+          <th>symbol</th>
+          <th>Time Zone</th>
+
+          <th>Actions</th>
+      </tr>
+      <tr *ngFor="let entity of (currencies$|async) ">
+          <td>{{entity.id}}</td>
+          <td>{{entity.currencyName}}</td>
+          <td>{{entity.code}}</td>
+          <td>{{entity.symbol}}</td>
+          
+          <button type="submit" class="btn btn-success">Edit</button>
+          <button type="button" class="btn btn-success" (click)="delete(entity.id)">Delete</button>
+      </tr>
+</table>

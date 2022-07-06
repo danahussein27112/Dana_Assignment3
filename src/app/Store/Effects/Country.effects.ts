@@ -13,7 +13,6 @@ export class CountryEffects {
    loadCountryRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(countryActions.loadCountryRequestAction),
       switchMap(countryAction => {
-        const subject = "Country";
         return this.dataService.getCountry(countryAction.id).pipe(
           map((country: any) => {
               return countryActions.CountryActions.loadCountrySuccessAction({ country })

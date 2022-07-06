@@ -9,24 +9,26 @@ import { AppComponent } from './app.component';
 import { CompanyModule } from './Modules/company/company.module';
 import { CompanyResolver } from './Store/Resolver/Company.resolver';
 import { metaReducers,reducers } from './Store/Reducers';
+import { CountryResolver } from './Store/Resolver/CountryResolver';
+import { CountryModule } from './Modules/country/country.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
   ],
   imports: [
     BrowserModule,
     CompanyModule,
+    CountryModule,
     HttpClientModule,
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([EffectsModule]),
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
 
     StoreDevtoolsModule.instrument({maxAge: 25}),
   ],
-  providers: [CompanyResolver],
+  providers: [CompanyResolver,CountryResolver],
   bootstrap: [AppComponent],
 
 })

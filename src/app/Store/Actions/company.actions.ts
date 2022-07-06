@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import {Update} from '@ngrx/entity';
 import { Company } from 'src/app/Modules/company/company.model';
+import { CompanyViewModel } from 'src/app/Modules/company/company.ViewModel';
 
 
 export const loadCompanies = createAction(
@@ -19,7 +20,7 @@ export const loadFailureAction = createAction(
 
 export const createCompany = createAction(
   '[Create Company Component] Create Company',
-  props<{items: Company}>()
+  props<{items: CompanyViewModel}>()
 );
 export const createFailureAction = createAction(
 '[Create Company Component] Create Failure'
@@ -28,7 +29,7 @@ export const createFailureAction = createAction(
  
 export const createSuccessAction = createAction(
   '[Create Company Component] Create Success',
-  props<{ item: Company }>()
+  props<{ items: CompanyViewModel }>()
 );
 export const deleteFailureAction = createAction(
   '[Delete Company Component] Delete Failure',
@@ -47,7 +48,7 @@ export const deleteCompany = createAction(
 
 export const updateCompany = createAction(
   '[Companies List Operations] Update Company',
-  props<{update: Update<Company>}>()
+  props<{update: Company}>()
 );
 export const updateFailureAction = createAction(
   '[Companies List Operations] Update Company Failure',
@@ -58,11 +59,28 @@ export const updateSuccessAction = createAction(
   '[Companies List Operations] Update Company Success',
   props<{ item: Company }>()
 );
+export const loadCompanyRequestAction = createAction(
+  '[company get Company request',
+  props<{ id: number }>()
+);
+ 
+export const loadCompanySuccessAction = createAction(
+  '[company] get Company Success',
+  props<{ company: Company }>()
+);
+ 
+export const loadCompanyFailureAction = createAction(
+  '[Company] get Company failed',
+  props<{ error: string }>()
+);
 
 export const companyActionTypes = {
   loadCompanies,
   companiesLoaded,
   loadFailureAction,
+  loadCompanyRequestAction,
+  loadCompanyFailureAction,
+  loadCompanySuccessAction,
   createCompany,
   createFailureAction,
   createSuccessAction,

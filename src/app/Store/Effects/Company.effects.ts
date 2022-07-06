@@ -1,5 +1,5 @@
 import { createEffect, Actions, ofType, Effect } from '@ngrx/effects';
-import { concatMap, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { companyActionTypes } from '../Actions/company.actions';
@@ -43,10 +43,18 @@ export class CompanyEffects {
   updateCompany$ = createEffect(() =>
     this.actions$.pipe(
       ofType(companyActionTypes.updateCompany),
-      concatMap((action) => this.companyService.update(action.update.id, action.update.changes))
+      concatMap((action) => this.companyService.update(action.update.id, action.update))
     ),
     {dispatch: false}
-  );
+  ); 
 
+  loadCompany$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(companyActionTypes.loadCompanyRequestAction),
+    concatMap((action) => this.companyService.getCompany(action.id)),
+  ),
+  {dispatch: false}
+);
+ 
   constructor(private companyService: CompanyService, private actions$: Actions, private router: Router) {}
 }

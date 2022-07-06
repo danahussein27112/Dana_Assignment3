@@ -2,6 +2,7 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Company } from 'src/app/Modules/company/company.model';
+import { CompanyViewModel } from 'src/app/Modules/company/company.ViewModel';
 import { AppState } from '.';
 import { companyActionTypes } from '../Actions/company.actions';
 
@@ -10,7 +11,8 @@ export interface CompanyState {
   isLoading: boolean;
   item: Company[]
   combaniesLoaded : boolean;
-  //selectedCompany:Company
+  addedCompany:CompanyViewModel;
+  selectedCompany:Company
 }
 
 export const initialState: CompanyState = {
@@ -18,9 +20,8 @@ export const initialState: CompanyState = {
   combaniesLoaded:false,
   isLoading:true,
   item:[],
-  //selectedCompany:{id:0,alias:'undefined',companyName:'undefined',countryId:0,}
-
-  
+  selectedCompany:{alias:'undefined',companyName:'undefined',country:undefined,id:0},
+  addedCompany:{alias:'undefined',companyName:'undefined',countryId:0} 
 };
 
 export const companyReducer = createReducer(
@@ -49,7 +50,7 @@ on(companyActionTypes.createSuccessAction, (state,action ) => ({
   ...state,
   isLoading: false,
   combaniesLoaded:true,
-  selectedCompany:action.item,
+  addedCompany:action.items,
   error: null
 })),
 on(companyActionTypes.createFailureAction, (state, { error }) => ({
@@ -57,7 +58,6 @@ on(companyActionTypes.createFailureAction, (state, { error }) => ({
   isLoading: false,
   error: error
 })), 
-//for delete
 on(companyActionTypes.deleteCompany, (state) => ({
   ...state,
   combaniesLoaded: false,
@@ -89,5 +89,22 @@ on(companyActionTypes.updateFailureAction, (state, { error }) => ({
   isLoading: false,
   error: error
 })), 
+on(companyActionTypes.loadCompanyRequestAction, (state, {id}) => ({
+  ...state,
+  isLoading: true ,
+  id:state.selectedCompany.id
+})),
+
+on(companyActionTypes.loadCompanySuccessAction, (state, { company }) => ({
+    ...state,
+    isLoading: false,
+    selectedCompany: company
+})),
+
+on(companyActionTypes.loadCompanyFailureAction, (state, { error }) => ({
+  ...state,
+  isLoading: false,
+  error: error
+})),
 
 )

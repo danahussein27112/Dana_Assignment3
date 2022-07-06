@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Currency } from './currency.model';
 
@@ -8,25 +8,36 @@ import { Currency } from './currency.model';
 @Injectable()
 export class CurrencyService {
 
-  http: HttpClient;
+  private selectedCurrency = new Subject<any>();
+  currencySelected = this.selectedCurrency.asObservable();
 
-  constructor(http: HttpClient) {
-    this.http = http;
+  constructor(private http: HttpClient) {}
+
+  getCurrencies(){
+      return this.http.get('https://localhost:44373/Currency'); 
   }
 
-  getAll(): Observable<Currency[]> {
-    return this.http.get<Currency[]>('/api/Currency');
+  getcurrecny(id: number)
+  {
+      return this.http.get('https://localhost:44373/Currency/id?' + id); 
   }
 
-  create(currency: Currency): Observable<Currency> {
-    return this.http.post<Currency>('/api/Currency', currency);
+  selectcurrecny(currecny: Currency) {
+      this.selectedCurrency.next(currecny)
   }
 
-  delete(Id: string): Observable<any> {
-    return this.http.delete('/api/Currency/' + Id);
+  savecurrecny(currecny: Currency) 
+  {
+      return this.http.post<Currency>('', currecny);
   }
 
-  update(Id:  number, changes: Partial<Currency>): Observable<any> {
-    return this.http.put('/api/Currency/' + Id, changes);
+  update(currecny: Currency) 
+  {
+      return this.http.post<Currency>('' + currecny.id, currecny);
   }
+
+  delete(id:number) 
+  {
+      return this.http.delete<Currency>('' + id);
+  }    
 }

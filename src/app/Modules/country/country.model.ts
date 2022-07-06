@@ -1,3 +1,5 @@
+import { Currency } from "../currency/currency.model";
+
 export interface Country {
     id: number;
     name: string;
@@ -6,5 +8,6 @@ export interface Country {
     timeZone:string;
     language:string;
     capitalCity:string;
+    currency:Currency;
   }
   

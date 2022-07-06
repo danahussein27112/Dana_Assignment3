@@ -1,17 +1,17 @@
  <form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm"> 
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="companyName"> Name </label>
       <input
         type="text"
-        id="name"
-        name="name"
+        id="companyName"
+        name="companyName"
         class="form-control"
         ngModel
         required
         style="width: 400px"/>
     </div>
     <div class="form-group">
-      <label for="side">Alias</label>
+      <label for="alias"> Alias </label>
       <input
         type="text"
         id="alias"
@@ -22,25 +22,15 @@
         style="width: 400px"/>
     </div>
     <div class="form-group">
-      <label for="side">Country</label>
+      <label for="countryId"> Country </label>
       <input
         type="text"
-        id="country"
-        name="country"
+        id="countryId"
+        name="countryId"
         class="form-control"
         ngModel
         required
         style="width: 400px"/>
     </div>
-    <div class="form-group">
-      <label for="side">Id</label>
-      <input
-        type="text"
-        id="id"
-        name="id"
-        class="form-control"
-        ngModel
-        required
-        style="width: 400px"/>
-    </div>
+  
      <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Create</button> 

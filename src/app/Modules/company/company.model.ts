@@ -4,6 +4,6 @@ export interface Company {
     id: number;
     companyName: string;
     alias: string;
-    country:Country
+    country:Country |undefined;
     
   }

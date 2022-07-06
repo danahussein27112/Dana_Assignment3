@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Company } from 'src/app/Modules/company/company.model';
-import { createCompany } from 'src/app/Store/Actions/company.actions';
+import { CompanyViewModel } from 'src/app/Modules/company/company.ViewModel';
+import { companyActionTypes, createCompany } from 'src/app/Store/Actions/company.actions';
 import { AppState } from 'src/app/Store/Reducers';
 
 @Component({
@@ -25,11 +26,12 @@ export class CompanyCreateComponent implements OnInit {
     }
 
 
-    const items: Company = {
-      companyName: submittedForm.value.name, alias: submittedForm.value.alias, country: submittedForm.value.country.id,
-      id: 0
+    const items: CompanyViewModel = {
+      companyName: submittedForm.value.companyName, alias: submittedForm.value.alias,countryId:submittedForm.value.countryId
+      
     };
-   this.store.dispatch(createCompany({items}));
+   this.store.dispatch(companyActionTypes.createCompany({items}));
+   this.store.dispatch(companyActionTypes.createSuccessAction({items}));
 
   }
 }

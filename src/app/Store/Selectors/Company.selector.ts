@@ -10,7 +10,7 @@ export const getAllCompanies = createSelector(
  
 export const getCompany = createSelector(
   getState,
-  (state: CompanyState, id: number) => state.item.filter(x=> x.id === id)
+  (state: CompanyState ,prop: { id: number }) => state.item[prop.id]
 );
  
 export const getSelected = createSelector(
@@ -26,4 +26,8 @@ export const getError = createSelector(
 export const getIsLoading = createSelector(
   getState,
   (state: CompanyState) => state.isLoading
+);
+export const getCompanyError = createSelector(
+  getState,
+  (state: CompanyState) => state.err
 );

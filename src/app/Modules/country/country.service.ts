@@ -28,7 +28,7 @@ export class CountryService {
  
     saveCountry(country: Country) 
     {
-        return this.http.post<Country>('', country);
+        return this.http.post<Country>('https://localhost:44373/Country', country);
     }
  
     update(country: Country) 
