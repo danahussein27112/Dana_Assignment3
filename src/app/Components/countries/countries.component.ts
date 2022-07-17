@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { State, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { CountryActions, countryActionTypes } from 'src/app/Store/Actions/Country.actions';
 import { of } from 'rxjs';
 import { Country } from 'src/app/Modules/country/country.model';
-import { State } from 'WebApplication4/ClientApp/src/app/store/reducers';
 import { getCountries, getCountryIsLoading } from 'src/app/Store/Selectors/Country.selector';
 import { Update } from '@ngrx/entity';
+import { CountryState } from 'src/app/Store/Reducers/Country.reducer';
 
 @Component({
   selector: 'countries',
@@ -16,13 +16,12 @@ import { Update } from '@ngrx/entity';
 })
 export class CountriesComponent implements OnInit {
     countries$?: Observable<Country[]>;
-    //displayedColumns: string[] = ['ID', 'Company Name', 'Alias', 'Country'];
   
     countryToBeUpdated!: Country;
   
     isUpdateActivated = false;
     isLoading$?: Observable<boolean>;
-    constructor(private store: Store<State>) { }
+    constructor(private store: Store<CountryState>) { }
   
   
     ngOnInit() {
@@ -31,8 +30,12 @@ export class CountriesComponent implements OnInit {
       this.isLoading$ = this.store.select(getCountryIsLoading);
   
       this.store.select(getCountries).subscribe(items => {
-        this.countries$ = of(items)  
+        this.countries$ = of(items);
+        this.store.dispatch(CountryActions.loadSuccessAction({items}))
+
+        console.log("contries",this.countries$);
        })
+
   
   
   

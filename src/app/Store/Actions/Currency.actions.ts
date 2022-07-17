@@ -1,5 +1,6 @@
 import { Action, createAction, props } from '@ngrx/store';
 import { Currency } from 'src/app/Modules/currency/currency.model';
+import { CurrencyViewModel } from 'src/app/Modules/currency/currencyViewModel';
  
 export enum currencyActionTypes {
   LOAD_CURRENCY_REQUEST = '[Currency] Load Currency Request',
@@ -57,7 +58,7 @@ export const loadSuccessAction = createAction(
  
 export const saveRequestAction = createAction(
   currencyActionTypes.SAVE_REQUEST,
-  props<{ item: Currency }>()
+  props<{ item: CurrencyViewModel }>()
 );
  
 export const saveFailureAction = createAction(
@@ -67,7 +68,7 @@ export const saveFailureAction = createAction(
  
 export const saveSuccessAction = createAction(
   currencyActionTypes.SAVE_SUCCESS,
-  props<{ item: Currency }>()
+  props<{ item: CurrencyViewModel }>()
 );
  
 ///

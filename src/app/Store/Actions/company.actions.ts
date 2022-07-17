@@ -57,20 +57,20 @@ export const updateFailureAction = createAction(
  
 export const updateSuccessAction = createAction(
   '[Companies List Operations] Update Company Success',
-  props<{ item: Company }>()
+  props<{ item: CompanyViewModel }>()
 );
 export const loadCompanyRequestAction = createAction(
-  '[company get Company request',
+  '[company get Company request]',
   props<{ id: number }>()
 );
  
 export const loadCompanySuccessAction = createAction(
-  '[company] get Company Success',
-  props<{ company: Company }>()
+  '[company] get Company Success]',
+  props<{ id:number }>()
 );
  
 export const loadCompanyFailureAction = createAction(
-  '[Company] get Company failed',
+  '[Company] get Company failed]',
   props<{ error: string }>()
 );
 

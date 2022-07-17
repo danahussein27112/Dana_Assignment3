@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Currency } from './currency.model';
+import { CurrencyViewModel } from './currencyViewModel';
 
 
 @Injectable()
@@ -26,9 +27,9 @@ export class CurrencyService {
       this.selectedCurrency.next(currecny)
   }
 
-  savecurrecny(currecny: Currency) 
+  savecurrecny(currecny: CurrencyViewModel) 
   {
-      return this.http.post<Currency>('', currecny);
+      return this.http.post<CurrencyViewModel>('https://localhost:44373/Currency', currecny);
   }
 
   update(currecny: Currency) 

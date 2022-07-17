@@ -1,7 +1,8 @@
 import { EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
+import { Action } from 'rxjs/internal/scheduler/Action';
 import { Country } from 'src/app/Modules/country/country.model';
-import * as countryActions from '../Actions/Country.actions';
+import { CountryActions } from '../Actions/Country.actions';
 export interface CountryState {
     err: any;
     isLoading: boolean;
@@ -18,87 +19,87 @@ export interface CountryState {
 
 export const countryReducer = createReducer(
   initialState,
-  on(countryActions.loadCountryRequestAction, (state, {id}) => ({
+  on(CountryActions.loadCountryRequestAction, (state, {id}) => ({
     ...state,
     isLoading: true 
   })),
  
-  on(countryActions.loadCountrySuccessAction, (state, { country }) => ({
+  on(CountryActions.loadCountrySuccessAction, (state, { country }) => ({
       ...state,
       isLoading: false,
       selectedCountry: country
   })),
  
-  on(countryActions.loadCountryFailureAction, (state, { error }) => ({
+  on(CountryActions.loadCountryFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error
   })),
  
-  on(countryActions.loadRequestAction, state => ({
+  on(CountryActions.loadRequestAction, state => ({
     ...state,
     isLoading: true 
   })),
  
-  on(countryActions.loadSuccessAction, (state, { items }) => ({
+  on(CountryActions.loadSuccessAction, (state, action) => ({
       ...state,
       isLoading: false,
-      countries: items
-  })),
+      countriesLoaded:true,
+item: action.items })),
  
-  on(countryActions.loadFailureAction, (state, { error }) => ({
+  on(CountryActions.loadFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error
   })), 
  
-  on(countryActions.saveRequestAction, state => ({
+  on(CountryActions.saveRequestAction, state => ({
     ...state,
     isLoading: true 
   })),
  
-  on(countryActions.saveSuccessAction, (state, { item }) => ({
+  on(CountryActions.saveSuccessAction, (state, { item }) => ({
     ...state,
     isLoading: false,
     selectedCountry: item,
     error: null
   })),
  
-  on(countryActions.saveFailureAction, (state, { error }) => ({
+  on(CountryActions.saveFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error
   })), 
  
-  on(countryActions.updateRequestAction, state => ({
+  on(CountryActions.updateRequestAction, state => ({
     ...state,
     isLoading: true 
   })),
  
-  on(countryActions.updateSuccessAction, (state, { item }) => ({
+  on(CountryActions.updateSuccessAction, (state, { item }) => ({
     ...state,
     isLoading: false,
     selectedCountry: item,
     error: null
   })),
  
-  on(countryActions.updateFailureAction, (state, { error }) => ({
+  on(CountryActions.updateFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error
   })), 
  
-  on(countryActions.deleteRequestAction, state => ({
+  on(CountryActions.deleteRequestAction, state => ({
     ...state,
     isLoading: true 
   })),
  
-  on(countryActions.deleteSuccessAction, (state, { id }) => ({
+  on(CountryActions.deleteSuccessAction, (state, { id }) => ({
     ...state,
     isLoading: false,
   })),
  
-  on(countryActions.deleteFailureAction, (state, { error }) => ({
+  on(CountryActions.deleteFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error

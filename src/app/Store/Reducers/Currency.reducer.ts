@@ -40,10 +40,10 @@ export const CurrencyReducer = createReducer(
     isLoading: true 
   })),
  
-  on(CurrencyActions.loadSuccessAction, (state, { items }) => ({
+  on(CurrencyActions.loadSuccessAction, (state, action) => ({
       ...state,
       isLoading: false,
-      currencies: items
+      item: action.items
   })),
  
   on(CurrencyActions.loadFailureAction, (state, { error }) => ({

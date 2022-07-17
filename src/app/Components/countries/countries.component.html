@@ -11,6 +11,7 @@
           <th>Population</th>
           <th>Time Zone</th>
           <th>Language</th>
+          <th>Capital City</th>
           <th>Currency</th>
           <th>Actions</th>
       </tr>
@@ -21,7 +22,8 @@
           <td>{{entity.population}}</td>
           <td>{{entity.timeZone}}</td>
           <td>{{entity.language}}</td>
-          <td>{{entity.currency.code}}</td>
+          <td>{{entity.capitalCity}}</td>
+          <td>{{entity.currency}}</td>
           <button type="submit" class="btn btn-success">Edit</button>
           <button type="button" class="btn btn-success" (click)="delete(entity.id)">Delete</button>
       </tr>

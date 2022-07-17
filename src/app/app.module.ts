@@ -38,13 +38,11 @@ const routes = [
   },
   { path: 'create-company', component: CompanyCreateComponent },
   { path: 'countries', component: CountriesComponent,resolve: {countries: CountryResolver }},
-  {path :'create-country',component:CountryCreateComponent},
+  {path :'countries/create-country',component:CountryCreateComponent},
+  {path :'create-currency',component:CurrencyCreateComponent},
   {path : 'currency',component:CurrenciesComponent},
   {path:'company-detail/:id', component:CompanyDetailComponent}
-  
-
 ];
-
 
 @NgModule({
   declarations: [
@@ -55,6 +53,7 @@ const routes = [
     CountryCreateComponent,
     CountryDetailComponent,
     CurrenciesComponent,
+    CountriesComponent,
     CurrencyCreateComponent,
     CurrencyDetailComponent,
     HomeComponent

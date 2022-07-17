@@ -29,7 +29,9 @@ export class CompaniesComponent implements OnInit {
     this.isLoading$ = this.store.select(getIsLoading);
 
     this.store.select(getAllCompanies).subscribe(items => {
-      this.companies$ = of(items)  
+      this.companies$ = of(items) 
+      const test=items[0];
+      console.log("test",test);
      })
      this.error$ = this.store.select(getCompanyError);
 
@@ -45,7 +47,7 @@ export class CompaniesComponent implements OnInit {
       this.store.dispatch(companyActionTypes.loadCompanies());
   }
 
-  selectBookById(id:number) {
+  selectById(id:number) {
       this.router.navigate(['company-detail/'+ id]);     
   }
 

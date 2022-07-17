@@ -17,7 +17,7 @@ export class CompanyService {
   }
   getCompany(id: number)
   {
-      return this.http.get('https://localhost:44373/company/id?' + id); 
+      return this.http.get('https://localhost:44373/company/id?' + 'id='+id); 
   }
 
   create(company: CompanyViewModel): Observable<CompanyViewModel> {

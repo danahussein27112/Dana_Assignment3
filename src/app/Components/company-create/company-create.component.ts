@@ -27,11 +27,10 @@ export class CompanyCreateComponent implements OnInit {
 
 
     const items: CompanyViewModel = {
-      companyName: submittedForm.value.companyName, alias: submittedForm.value.alias,countryId:submittedForm.value.countryId
+      companyName: submittedForm.value.companyName, alias: submittedForm.value.alias,countryName:submittedForm.value.countryName
       
     };
    this.store.dispatch(companyActionTypes.createCompany({items}));
    this.store.dispatch(companyActionTypes.createSuccessAction({items}));
-
   }
 }

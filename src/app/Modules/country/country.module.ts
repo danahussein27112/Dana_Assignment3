@@ -7,15 +7,17 @@ import { EffectsModule } from '@ngrx/effects';
 import { countryReducer } from 'src/app/Store/Reducers/Country.reducer';
 import { BrowserModule } from '@angular/platform-browser';
 import { CountriesComponent } from 'src/app/Components/countries/countries.component';
+import { CountryCreateComponent } from 'src/app/Components/country-create/country-create.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    CountriesComponent
+  
   ],
   imports: [
-    
+    FormsModule,
     CommonModule,
     StoreModule.forFeature('countries', countryReducer),
     EffectsModule.forFeature([CountryEffects]),

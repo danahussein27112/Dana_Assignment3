@@ -13,6 +13,8 @@ export interface CompanyState {
   combaniesLoaded : boolean;
   addedCompany:CompanyViewModel;
   selectedCompany:Company
+  selectedId:number
+  items: CompanyViewModel[]
 }
 
 export const initialState: CompanyState = {
@@ -20,8 +22,10 @@ export const initialState: CompanyState = {
   combaniesLoaded:false,
   isLoading:true,
   item:[],
-  selectedCompany:{alias:'undefined',companyName:'undefined',country:undefined,id:0},
-  addedCompany:{alias:'undefined',companyName:'undefined',countryId:0} 
+  selectedCompany:{alias:'undefined',companyName:'undefined',country:undefined,id:0} ,
+  addedCompany:{alias:'undefined',companyName:'undefined',countryName:'0'} ,
+  selectedId:0,
+  items:[]
 };
 
 export const companyReducer = createReducer(
@@ -77,10 +81,10 @@ on(companyActionTypes.updateCompany, (state ) => ({
   isLoading: true,
   error: null
 })),
-on(companyActionTypes.updateSuccessAction, (state, { item }) => ({
+on(companyActionTypes.updateSuccessAction, (state,  action ) => ({
   ...state,
   isLoading: false,
-  selectedCompany: item,
+  addedCompany: action.item,
   error: null
 })),
 
@@ -89,16 +93,17 @@ on(companyActionTypes.updateFailureAction, (state, { error }) => ({
   isLoading: false,
   error: error
 })), 
-on(companyActionTypes.loadCompanyRequestAction, (state, {id}) => ({
+on(companyActionTypes.loadCompanyRequestAction, (state, action) => ({
   ...state,
   isLoading: true ,
-  id:state.selectedCompany.id
+  selectedId:action.id,
+  selectedCompany:state.item[action.id]
 })),
 
-on(companyActionTypes.loadCompanySuccessAction, (state, { company }) => ({
+on(companyActionTypes.loadCompanySuccessAction, (state,  action ) => ({
     ...state,
     isLoading: false,
-    selectedCompany: company
+    selectedCompany: state.item[action.id]
 })),
 
 on(companyActionTypes.loadCompanyFailureAction, (state, { error }) => ({

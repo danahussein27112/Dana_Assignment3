@@ -18,12 +18,9 @@ return this.store
     .pipe(
         select(getCountryIsLoading),
         tap((countriesLoaded) => {
-            console.log("countriesLoaded",countriesLoaded)
-
           if (!countriesLoaded) {
  this.store.dispatch(CountryActions.loadRequestAction()) ;
           }
-
         }),
         first()
     );
