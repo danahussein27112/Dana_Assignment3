@@ -33,7 +33,6 @@ export class CountriesComponent implements OnInit {
         this.countries$ = of(items);
         this.store.dispatch(CountryActions.loadSuccessAction({items}))
 
-        console.log("contries",this.countries$);
        })
 
   

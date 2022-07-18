@@ -25,10 +25,10 @@ export class CompanyService {
   }
 
   delete(Id: number): Observable<any> {
-    return this.http.delete('https://localhost:44373/Company' + Id);
+    return this.http.delete('https://localhost:44373/company/Delete/id?' + 'id='+Id);
   }
 
-  update(Id:  number|string, changes: Partial<Company>): Observable<any> {
-    return this.http.put('/api/Company/' + Id, changes);
+  update(Id:  number, company:CompanyViewModel):Observable<CompanyViewModel> {
+    return this.http.put<CompanyViewModel>('https://localhost:44373/company/?id='+Id,company);
   }
 }

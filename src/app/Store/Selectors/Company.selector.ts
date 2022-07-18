@@ -8,11 +8,10 @@ export const getAllCompanies = createSelector(
   getState,
   (state: CompanyState) => state.item
 );
- 
-export const getCompany = (props: { id:number}) =>
-  createSelector(getState,(state:CompanyState)=>state.item[props.id]
-
-  );
+export const getCompany = createSelector(
+  getState,
+  (state: CompanyState, id: number) => state.item.filter((x: { id: number; })=> x.id === id)
+);
   export const getCompanyDetail=(props:{id:number})=>
   createSelector(getState,(state :CompanyState)=> state.selectedCompany);
  

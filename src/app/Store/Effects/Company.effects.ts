@@ -35,26 +35,38 @@ export class CompanyEffects {
   deleteCompany$ = createEffect(() =>
     this.actions$.pipe(
       ofType(companyActionTypes.deleteCompany),
-      concatMap((action) => this.companyService.delete(action.id))
+      concatMap((action) => this.companyService.delete(action.id)),
+      tap(() => this.router.navigateByUrl('/companies'))
+
     ),
     {dispatch: false}
   );
 
-  updateCompany$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(companyActionTypes.updateCompany),
-      concatMap((action) => this.companyService.update(action.update.id, action.update))
-    ),
-    {dispatch: false}
-  ); 
+  updateRequestEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(companyActionTypes.updateCompany),
+    switchMap(action => {
+      return this.companyService.update(action.id,action.items).pipe(
+          map((items: any,id:number) => {
+              return companyActionTypes.updateSuccessAction({ items })
+          }),      tap(() => this.router.navigateByUrl('/companies'))
 
-  loadCompany$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(companyActionTypes.loadCompanyRequestAction),
-    concatMap((action) => this.companyService.getCompany(action.id)),
-  ),
-  {dispatch: false}
-);
- 
+        )
+      })
+  ))
+
+loadCompanyRequestEffect$ = createEffect(() => this.actions$.pipe(
+  ofType(companyActionTypes.loadCompanyRequestAction),
+    switchMap(companyAction => {
+      return this.companyService.getCompany(companyAction.id).pipe(
+        map((company: any) => {
+            return companyActionTypes.loadCompanySuccessAction({ company })
+        }),
+      )
+    })
+));
+
+
+
+
   constructor(private companyService: CompanyService, private actions$: Actions, private router: Router) {}
 }

@@ -76,35 +76,34 @@ on(companyActionTypes.deleteCompany, (state) => ({
     error: error
   })),
 
-on(companyActionTypes.updateCompany, (state ) => ({
-  ...state,
-  isLoading: true,
-  error: null
-})),
-on(companyActionTypes.updateSuccessAction, (state,  action ) => ({
-  ...state,
-  isLoading: false,
-  addedCompany: action.item,
-  error: null
-})),
-
-on(companyActionTypes.updateFailureAction, (state, { error }) => ({
-  ...state,
-  isLoading: false,
-  error: error
-})), 
+  on(companyActionTypes.updateCompany, state => ({
+    ...state,
+    isLoading: true 
+  })),
+ 
+  on(companyActionTypes.updateSuccessAction, (state, action) => ({
+    ...state,
+    isLoading: false,
+    addedCompany: action.items,
+    error: null
+  })),
+ 
+  on(companyActionTypes.updateFailureAction, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error: error
+  })), 
 on(companyActionTypes.loadCompanyRequestAction, (state, action) => ({
   ...state,
   isLoading: true ,
   selectedId:action.id,
-  selectedCompany:state.item[action.id]
 })),
 
 on(companyActionTypes.loadCompanySuccessAction, (state,  action ) => ({
     ...state,
     isLoading: false,
-    selectedCompany: state.item[action.id]
-})),
+    selectedCompany:action.company
+  })),
 
 on(companyActionTypes.loadCompanyFailureAction, (state, { error }) => ({
   ...state,

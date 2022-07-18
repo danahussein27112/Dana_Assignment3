@@ -1,0 +1,15 @@
+<div *ngIf="company$|async">
+    <h3>Company Detail </h3>
+
+    <div class="form-group">
+        <form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm"> 
+            <label for="companyName">Company Name</label>       
+          <input type="text" id="companyName" name="companyName"  *ngIf="company$|async" [ngModel]="(company$|async)?.companyName">
+      <br>
+          <label for="alias">Alias</label>
+          <input type="text" id="alias" name="alias"  *ngIf="company$|async" [ngModel]="(company$|async)?.alias">
+          <br>
+          <label for="countryName">Country</label>
+          <input type="text" id="countryName" name="countryName"  *ngIf="company$|async" [ngModel]="(company$|async)?.country?.name">
+          <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Save </button>         </form>
+      </div>

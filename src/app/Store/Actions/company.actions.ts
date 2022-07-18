@@ -48,7 +48,7 @@ export const deleteCompany = createAction(
 
 export const updateCompany = createAction(
   '[Companies List Operations] Update Company',
-  props<{update: Company}>()
+  props<{items: CompanyViewModel,id:number}>()
 );
 export const updateFailureAction = createAction(
   '[Companies List Operations] Update Company Failure',
@@ -57,7 +57,7 @@ export const updateFailureAction = createAction(
  
 export const updateSuccessAction = createAction(
   '[Companies List Operations] Update Company Success',
-  props<{ item: CompanyViewModel }>()
+  props<{ items: CompanyViewModel }>()
 );
 export const loadCompanyRequestAction = createAction(
   '[company get Company request]',
@@ -66,7 +66,7 @@ export const loadCompanyRequestAction = createAction(
  
 export const loadCompanySuccessAction = createAction(
   '[company] get Company Success]',
-  props<{ id:number }>()
+  props<{ company:Company }>()
 );
  
 export const loadCompanyFailureAction = createAction(
