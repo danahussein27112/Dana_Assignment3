@@ -18,7 +18,7 @@
   <tr *ngFor="let entity of (countries$ | async) ">
     <td>{{entity.id}}</td>
     <td>{{entity.name}}</td>
-    <td>{{entity.flag}}</td>
+    <td><img src="https://countryflagsapi.com/svg/{{entity.name}}" style="width: 35px;"></td>
     <td>{{entity.population}}</td>
     <td>{{entity.timeZone}}</td>
     <td>{{entity.language}}</td>

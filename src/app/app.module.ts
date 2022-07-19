@@ -33,6 +33,10 @@ import { CurrencyReducer } from './Store/Reducers/Currency.reducer';
 import { CurrencyEffects } from './Store/Effects/Currency.effects';
 import { CurrencyService } from './Modules/currency/currecny.service';
 import { CompanyModule } from './Modules/company/company.module';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {Ng2TelInputModule} from 'ng2-tel-input';
+
 const routes = [
   { path: 'companies',component: CompaniesComponent, resolve: {  companies: CompanyResolver}
   },
@@ -82,6 +86,10 @@ const routes = [
       metaReducers,
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    MatInputModule,
+    MatFormFieldModule,
+    
+
 
   ],
   providers: [CompanyResolver, CompanyService, CountryService, CountryResolver,CurrencyService],
