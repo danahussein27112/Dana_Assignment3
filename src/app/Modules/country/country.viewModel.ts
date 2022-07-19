@@ -7,5 +7,5 @@ export interface countryViewModel{
     timeZone:string;
     language:string;
     capitalCity:string;
-    currency:Currency;
+    currency:string;
 }

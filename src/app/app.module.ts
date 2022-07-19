@@ -41,7 +41,10 @@ const routes = [
   {path :'countries/create-country',component:CountryCreateComponent},
   {path :'create-currency',component:CurrencyCreateComponent},
   {path : 'currency',component:CurrenciesComponent},
-  {path:'company-detail/:id', component:CompanyDetailComponent}
+  {path:'company-detail/:id', component:CompanyDetailComponent},
+  {path:'country-detail/:id', component:CountryDetailComponent},
+  {path:'currecny-detail/:id', component:CurrencyDetailComponent},
+  {path: 'companies', loadChildren: () => import('./Modules/company/company.module').then(m => m.CompanyModule)},
 ];
 
 @NgModule({
@@ -69,12 +72,10 @@ const routes = [
     EffectsModule.forRoot([CompanyEffects]),
     StoreModule.forRoot({ CompanyState: companyReducer }),
     StoreModule.forRoot({ CountryState: countryReducer }),
-
     StoreModule.forFeature('country', countryReducer),
     EffectsModule.forRoot([CountryEffects]),
     StoreModule.forRoot(reducers, {
-      metaReducers,
-    }),
+      metaReducers,  }),
     StoreModule.forFeature('currency', CurrencyReducer),
     EffectsModule.forRoot([CurrencyEffects]),
     StoreModule.forRoot(reducers, {

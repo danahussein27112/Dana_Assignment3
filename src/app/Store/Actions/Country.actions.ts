@@ -1,5 +1,6 @@
 import { Action, createAction, props } from '@ngrx/store';
 import { Country } from 'src/app/Modules/country/country.model';
+import { countryViewModel } from 'src/app/Modules/country/country.viewModel';
  
 export enum countryActionTypes {
   LOAD_COUNTRY_REQUEST = '[Country] Load Country Request',
@@ -29,7 +30,7 @@ export const loadCountryRequestAction = createAction(
  
 export const loadCountrySuccessAction = createAction(
   countryActionTypes.LOAD_COUNTRY_FAILURE,
-  props<{ country: Country }>()
+  props<{ country: countryViewModel }>()
 );
  
 export const loadCountryFailureAction = createAction(
@@ -57,7 +58,7 @@ export const loadSuccessAction = createAction(
  
 export const saveRequestAction = createAction(
   countryActionTypes.SAVE_REQUEST,
-  props<{ item: Country }>()
+  props<{ item: countryViewModel }>()
 );
  
 export const saveFailureAction = createAction(
@@ -67,14 +68,14 @@ export const saveFailureAction = createAction(
  
 export const saveSuccessAction = createAction(
   countryActionTypes.SAVE_SUCCESS,
-  props<{ item: Country }>()
+  props<{ item: countryViewModel }>()
 );
  
 ///
  
 export const updateRequestAction = createAction(
   countryActionTypes.UPDATE_REQUEST,
-  props<{ item: Country }>()
+  props<{ item: countryViewModel ,id:number}>()
 );
  
 export const updateFailureAction = createAction(
@@ -84,7 +85,7 @@ export const updateFailureAction = createAction(
  
 export const updateSuccessAction = createAction(
   countryActionTypes.UPDATE_SUCCESS,
-  props<{ item: Country }>()
+  props<{ item: countryViewModel }>()
 );
    
 ////

@@ -8,6 +8,8 @@ export const getCountries = createSelector(
   getState,
   (state: CountryState) => state.item
 );
+export const getCountryDetail=(props:{id:number})=>
+  createSelector(getState,(state :CountryState)=> state.selectedCountry);
  
 export const getCountry = createSelector(
   getState,

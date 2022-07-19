@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Update } from '@ngrx/entity/public_api';
 import { State, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
@@ -19,7 +20,7 @@ export class CurrenciesComponent implements OnInit {
 
   isUpdateActivated = false;
   isLoading$?: Observable<boolean>;
-  constructor(private store: Store<CurrencyState>) { }
+  constructor(private store: Store<CurrencyState>,private router:Router) { }
 
 
   ngOnInit() {
@@ -42,22 +43,10 @@ export class CurrenciesComponent implements OnInit {
     if (confirm('Are you sure do you want to delete this currency?')) {
     this.store.dispatch(CurrencyActions.deleteRequestAction({ id }));
     this.store.dispatch(CurrencyActions.deleteSuccessAction({id}));
+    window.location.reload();
+
   }}
-
-  showUpdateForm(currecny: Currency) {
-    this.currencyToBeUpdated = { ...currecny };
-    this.isUpdateActivated = true;
-  }
-
-  update(updateForm: any) {
-    const update: Update<Currency> = {
-      id: this.currencyToBeUpdated.id,
-      changes: {
-        ...this.currencyToBeUpdated,
-        ...updateForm.value
-      }
-    };
-
-
-  }
+  selectById(id:number) {
+    this.router.navigate(['currecny-detail/'+ id]);     
+}
 }

@@ -21,7 +21,7 @@ export class CountriesComponent implements OnInit {
   
     isUpdateActivated = false;
     isLoading$?: Observable<boolean>;
-    constructor(private store: Store<CountryState>) { }
+    constructor(private store: Store<CountryState>,private router:Router) { }
   
   
     ngOnInit() {
@@ -43,25 +43,15 @@ export class CountriesComponent implements OnInit {
     }
   
     delete(id: number) {
-      if (confirm('Are you sure do you want to delete this company?')) {
+      if (confirm('Are you sure do you want to delete this country?')) {
       this.store.dispatch(CountryActions.deleteRequestAction({ id }));
       this.store.dispatch(CountryActions.deleteSuccessAction({id}));
+      window.location.reload();
+
     }}
-  
-    showUpdateForm(country: Country) {
-      this.countryToBeUpdated = { ...country };
-      this.isUpdateActivated = true;
-    }
-  
-    update(updateForm: any) {
-      const update: Update<Country> = {
-        id: this.countryToBeUpdated.id,
-        changes: {
-          ...this.countryToBeUpdated,
-          ...updateForm.value
-        }
-      };
-  
- 
-    }
+    
+  selectById(id:number) {
+    this.router.navigate(['country-detail/'+ id]);     
+}
+
   }

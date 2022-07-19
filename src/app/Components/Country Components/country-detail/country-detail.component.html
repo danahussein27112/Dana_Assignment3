@@ -1,1 +1,30 @@
-<p>country-detail works!</p>
+<div *ngIf="country$|async">
+    <h3>Country Detail </h3>
+
+    <div class="form-group">
+        <form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+            <label for="name">Company Name</label>
+            <input type="text" id="name" name="name" *ngIf="country$|async" [ngModel]="(country$|async)?.name">
+            <br>
+            <label for="flag">flag</label>
+            <input type="text" id="flag" name="flag" *ngIf="country$|async" [ngModel]="(country$|async)?.flag">
+            <br>
+            <label for="population">Population</label>
+            <input type="text" id="population" name="population" *ngIf="country$|async"
+                [ngModel]="(country$|async)?.population">
+                <br>
+                <label for="timeZone">Time Zone</label>
+                <input type="text" id="timeZone" name="timeZone"  *ngIf="country$|async" [ngModel]="(country$|async)?.timeZone">
+                <br>
+                <label for="language">Language</label>
+                <input type="text" id="language" name="language"  *ngIf="country$|async" [ngModel]="(country$|async)?.language">
+                <br>
+                <label for="capitalCity">Capital City</label>
+                <input type="text" id="capitalCity" name="capitalCity"  *ngIf="country$|async" [ngModel]="(country$|async)?.capitalCity">
+                <br>
+                <label for="currency">Currency</label>
+                <input type="text" id="currency" name="currency"  *ngIf="country$|async" [ngModel]="(country$|async)?.currency">
+                <br>
+            <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Save </button>
+        </form>
+    </div>

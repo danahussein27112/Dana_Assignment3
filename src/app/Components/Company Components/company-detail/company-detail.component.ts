@@ -8,7 +8,7 @@ import { Company } from 'src/app/Modules/company/company.model';
 import { CompanyViewModel } from 'src/app/Modules/company/company.ViewModel';
 import { companyActionTypes } from 'src/app/Store/Actions/company.actions';
 import { AppState } from 'src/app/Store/Reducers';
-import { getAllCompanies, getCompany, getCompanyDetail, getCompanyError, getIsLoading } from 'src/app/Store/Selectors/Company.selector';
+import { getAllCompanies, getCompany, getCompanyDetail, getIsLoading } from 'src/app/Store/Selectors/Company.selector';
 
 @Component({
   selector: 'app-company-detail',
@@ -18,9 +18,7 @@ import { getAllCompanies, getCompany, getCompanyDetail, getCompanyError, getIsLo
 export class CompanyDetailComponent implements OnInit {
 
   company$?: Observable<Company>;
-  public entityForm?: FormGroup;
   selectedId$?: Observable<number>;
-  isUpdateActivated = false;
   error$?: Observable<any>;
 
   constructor(private router: Router, private route: ActivatedRoute, private store: Store<AppState>) { }

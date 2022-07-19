@@ -1,20 +1,22 @@
 import { EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { Currency } from 'src/app/Modules/currency/currency.model';
+import { CurrencyViewModel } from 'src/app/Modules/currency/currencyViewModel';
 import { CurrencyActions } from '../Actions/Currency.actions';
 export interface CurrencyState {
     err: any;
     isLoading: boolean;
     item: Currency[]
     CurrencyLoaded : boolean;
-    //selectedCurrency:Currency
+    selectedCurrency:CurrencyViewModel|undefined
   }
   
   export const initialState: CurrencyState = {
     err:undefined,
     CurrencyLoaded:false,
     isLoading:true,
-    item:[]}
+    item:[],
+  selectedCurrency:undefined}
 
 export const CurrencyReducer = createReducer(
   initialState,
@@ -23,10 +25,10 @@ export const CurrencyReducer = createReducer(
     isLoading: true 
   })),
  
-  on(CurrencyActions.loadCurrencySuccessAction, (state, { currency }) => ({
+  on(CurrencyActions.loadCurrencySuccessAction, (state, action) => ({
       ...state,
       isLoading: false,
-      selectedCurrency: currency
+      selectedCurrency: action.currency
   })),
  
   on(CurrencyActions.loadCurrencyFailureAction, (state, { error }) => ({
@@ -57,10 +59,10 @@ export const CurrencyReducer = createReducer(
     isLoading: true 
   })),
  
-  on(CurrencyActions.saveSuccessAction, (state, { item }) => ({
+  on(CurrencyActions.saveSuccessAction, (state,  action) => ({
     ...state,
     isLoading: false,
-    selectedCurrency: item,
+    selectedCurrency: action.item,
     error: null
   })),
  
@@ -75,10 +77,10 @@ export const CurrencyReducer = createReducer(
     isLoading: true 
   })),
  
-  on(CurrencyActions.updateSuccessAction, (state, { item }) => ({
+  on(CurrencyActions.updateSuccessAction, (state, action) => ({
     ...state,
     isLoading: false,
-    selectedCurrency: item,
+    selectedCurrency: action.item,
     error: null
   })),
  

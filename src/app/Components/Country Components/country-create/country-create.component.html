@@ -1,1 +1,32 @@
-<p>country-create works!</p>
+<div class="form-group">
+    <form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+        <label for="name">Country Name</label>
+        <input type="text" id="name" name="name" ngModel >
+        <br>
+        <label for="flag">flag</label>
+        <input type="text" id="flag" name="flag" >
+        <br>
+        <label for="population">Population</label>
+        <input type="text" id="population" name="population" ngModel
+    >
+            <br>
+            <label for="timeZone">Time Zone</label>
+            <input type="text" id="timeZone" name="timeZone" ngModel  >
+            <br>
+            <label for="language">Language</label>
+            <input type="text" id="language" name="language" ngModel  >
+            <br>
+            <label for="capitalCity">Capital City</label>
+            <input type="text" id="capitalCity" name="capitalCity" ngModel >
+            <br>
+            <label for="currency"> Currency </label>
+            <select class="form-control" name="currency" id="currency"[ngModel]="currencies$">
+              <option *ngFor="let country of (currencies$|async)" >
+                {{country.currencyName}}
+              </option>
+              <option>none</option>
+            </select>
+            <br>
+        <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Save </button>
+    </form>
+</div>

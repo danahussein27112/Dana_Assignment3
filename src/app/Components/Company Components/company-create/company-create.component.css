@@ -28,4 +28,9 @@ input[type=text], select {
     background-color: #f2f2f2;
     padding: 20px;
   }
-  
+  select {
+    cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  }

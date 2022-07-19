@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { Country } from "./country.model";
+import { countryViewModel } from "./country.viewModel";
 
 @Injectable({
     providedIn: 'root'
@@ -19,25 +20,18 @@ export class CountryService {
  
     getCountry(id: number)
     {
-        return this.http.get('https://localhost:44373/Country/id?' + id); 
+        return this.http.get('https://localhost:44373/country/id?' + 'id='+id); 
     }
  
-    selectCountry(country: Country) {
-        this.selectedCountry.next(country)
-    }
- 
-    saveCountry(country: Country) 
-    {
-        return this.http.post<Country>('https://localhost:44373/Country', country);
-    }
- 
-    update(country: Country) 
-    {
-        return this.http.post<Country>('' + country.id, country);
-    }
- 
-    delete(id:number) 
-    {
-        return this.http.delete<Country>('' + id);
-    }    
+    create(country: countryViewModel) {
+        return this.http.post<countryViewModel>('https://localhost:44373/Country/add', country);
+      }
+    
+      delete(Id: number): Observable<any> {
+        return this.http.delete('https://localhost:44373/country/Delete/id?' + 'id='+Id);
+      }
+    
+      update(Id:  number, country:countryViewModel):Observable<countryViewModel> {
+        return this.http.put<countryViewModel>('https://localhost:44373/country/?id='+Id,country);
+      }  
 }

@@ -29,7 +29,3 @@ export const getIsLoading = createSelector(
   getState,
   (state: CompanyState) => state.isLoading
 );
-export const getCompanyError = createSelector(
-  getState,
-  (state: CompanyState) => state.err
-);

@@ -4,27 +4,27 @@
 </div>
 
 <table id="countries">
-      <tr>
-          <th>ID</th>
-          <th> Name</th>
-          <th>Flag</th>
-          <th>Population</th>
-          <th>Time Zone</th>
-          <th>Language</th>
-          <th>Capital City</th>
-          <th>Currency</th>
-          <th>Actions</th>
-      </tr>
-      <tr *ngFor="let entity of (countries$ | async) ">
-          <td>{{entity.id}}</td>
-          <td>{{entity.name}}</td>
-          <td>{{entity.flag}}</td>
-          <td>{{entity.population}}</td>
-          <td>{{entity.timeZone}}</td>
-          <td>{{entity.language}}</td>
-          <td>{{entity.capitalCity}}</td>
-          <td>{{entity.currency}}</td>
-          <button type="submit" class="btn btn-success">Edit</button>
-          <button type="button" class="btn btn-success" (click)="delete(entity.id)">Delete</button>
-      </tr>
+  <tr>
+    <th>ID</th>
+    <th> Name</th>
+    <th>Flag</th>
+    <th>Population</th>
+    <th>Time Zone</th>
+    <th>Language</th>
+    <th>Capital City</th>
+    <th>Currency</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let entity of (countries$ | async) ">
+    <td>{{entity.id}}</td>
+    <td>{{entity.name}}</td>
+    <td>{{entity.flag}}</td>
+    <td>{{entity.population}}</td>
+    <td>{{entity.timeZone}}</td>
+    <td>{{entity.language}}</td>
+    <td>{{entity.capitalCity}}</td>
+    <td>{{entity.currency}}</td>
+    <button type="submit" class="btn btn-success" (click)="selectById(entity.id)">Detail</button> <button type="button"
+      class="btn btn-success" (click)="delete(entity.id)">Delete</button>
+  </tr>
 </table>

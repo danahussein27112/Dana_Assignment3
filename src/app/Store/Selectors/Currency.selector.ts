@@ -13,7 +13,9 @@ export const getCurrency = createSelector(
   getState,
   (state: CurrencyState, id: number) => state.item.filter((x=>x.id === id)
 ));
- 
+export const getCurrencyDetail=(props:{id:number})=>
+createSelector(getState,(state :CurrencyState)=> state.selectedCurrency);
+
 export const getSelectedCurrency = createSelector(
   getState,
     (state: CurrencyState) => state.item

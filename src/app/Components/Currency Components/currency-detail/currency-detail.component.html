@@ -1,1 +1,22 @@
-<p>currency-detail works!</p>
+<div *ngIf="currency$|async">
+    <h3>Country Detail </h3>
+
+    <div class="form-group">
+        <form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+            <label for="name">Currency Name</label>
+            <input type="text" id="name" name="name" *ngIf="currency$|async" [ngModel]="(currency$|async)?.currencyName">
+            <br>
+            <label for="code">Code</label>
+            <input type="text" id="code" name="code" *ngIf="currency$|async" [ngModel]="(currency$|async)?.code">
+            <br>
+            <label for="symbol">Symbol</label>
+            <input type="text" id="symbol" name="symbol" *ngIf="currency$|async"
+                [ngModel]="(currency$|async)?.symbol">
+                <br>
+                <label for="country"> Country </label>
+            <input type="text" id="country" name="country" *ngIf="currency$|async"
+                [ngModel]="(currency$|async)?.country">
+                <br>
+            <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Save </button>
+        </form>
+    </div>

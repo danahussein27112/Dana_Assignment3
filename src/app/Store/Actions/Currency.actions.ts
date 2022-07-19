@@ -30,7 +30,7 @@ export const loadCurrencyRequestAction = createAction(
  
 export const loadCurrencySuccessAction = createAction(
   currencyActionTypes.LOAD_CURRENCY_FAILURE,
-  props<{ currency: Currency }>()
+  props<{ currency: CurrencyViewModel }>()
 );
  
 export const loadCurrencyFailureAction = createAction(
@@ -70,12 +70,10 @@ export const saveSuccessAction = createAction(
   currencyActionTypes.SAVE_SUCCESS,
   props<{ item: CurrencyViewModel }>()
 );
- 
-///
- 
+
 export const updateRequestAction = createAction(
   currencyActionTypes.UPDATE_REQUEST,
-  props<{ item: Currency }>()
+  props<{ item: CurrencyViewModel,id:number }>()
 );
  
 export const updateFailureAction = createAction(
@@ -85,7 +83,7 @@ export const updateFailureAction = createAction(
  
 export const updateSuccessAction = createAction(
   currencyActionTypes.UPDATE_SUCCESS,
-  props<{ item: Currency }>()
+  props<{ item: CurrencyViewModel}>()
 );
    
 ////

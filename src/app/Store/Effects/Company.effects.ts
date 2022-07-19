@@ -49,7 +49,6 @@ export class CompanyEffects {
           map((items: any,id:number) => {
               return companyActionTypes.updateSuccessAction({ items })
           }),      tap(() => this.router.navigateByUrl('/companies'))
-
         )
       })
   ))

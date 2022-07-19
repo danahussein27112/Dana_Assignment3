@@ -2,32 +2,36 @@ import { EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { Country } from 'src/app/Modules/country/country.model';
+import { countryViewModel } from 'src/app/Modules/country/country.viewModel';
 import { CountryActions } from '../Actions/Country.actions';
 export interface CountryState {
     err: any;
     isLoading: boolean;
     item: Country[]
     countriesLoaded : boolean;
-    //selectedCountry:Country
+    selectedCountry:countryViewModel|undefined
+    addedCountry:countryViewModel|undefined
   }
   
   export const initialState: CountryState = {
     err:undefined,
     countriesLoaded:false,
     isLoading:true,
-    item:[]}
+    item:[],
+  selectedCountry:undefined,
+addedCountry:undefined}
 
 export const countryReducer = createReducer(
   initialState,
-  on(CountryActions.loadCountryRequestAction, (state, {id}) => ({
+  on(CountryActions.loadCountryRequestAction, (state) => ({
     ...state,
     isLoading: true 
   })),
  
-  on(CountryActions.loadCountrySuccessAction, (state, { country }) => ({
+  on(CountryActions.loadCountrySuccessAction, (state, action) => ({
       ...state,
       isLoading: false,
-      selectedCountry: country
+      selectedCountry: action.country
   })),
  
   on(CountryActions.loadCountryFailureAction, (state, { error }) => ({
@@ -58,10 +62,10 @@ item: action.items })),
     isLoading: true 
   })),
  
-  on(CountryActions.saveSuccessAction, (state, { item }) => ({
+  on(CountryActions.saveSuccessAction, (state,  action) => ({
     ...state,
     isLoading: false,
-    selectedCountry: item,
+    addedCountry: action.item,
     error: null
   })),
  
@@ -76,10 +80,10 @@ item: action.items })),
     isLoading: true 
   })),
  
-  on(CountryActions.updateSuccessAction, (state, { item }) => ({
+  on(CountryActions.updateSuccessAction, (state, action) => ({
     ...state,
     isLoading: false,
-    selectedCountry: item,
+    selectedCountry: action.item,
     error: null
   })),
  

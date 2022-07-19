@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
 import { Observable, of as observableOf } from 'rxjs';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { catchError, map, startWith, switchMap , concatMap, tap} from 'rxjs/operators';
 import { Country } from 'src/app/Modules/country/country.model';
 import { CountryService } from 'src/app/Modules/country/country.service';
 import * as countryActions from '../Actions/Country.actions';
 
 @Injectable()
 export class CountryEffects {
-  constructor(private dataService: CountryService, private actions$: Actions) {}
+  constructor(private dataService: CountryService, private actions$: Actions, private router: Router) {}
   
    loadCountryRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(countryActions.loadCountryRequestAction),
@@ -42,24 +43,34 @@ export class CountryEffects {
     ofType(countryActions.saveRequestAction),
       switchMap(action => {
         const subject = "country";      
-        return this.dataService.saveCountry(action.item).pipe(
+        return this.dataService.create(action.item).pipe(
           map((item: any) => {
               return countryActions.saveSuccessAction({ item })
-          }),
+          }),    tap(() => this.router.navigateByUrl('/countries'))
+,
           catchError(error => {
             return observableOf(countryActions.saveFailureAction({ error }))
           })
         )
       })
   ))
+//   createCountry$ = createEffect(() =>
+//   this.actions$.pipe(
+//     ofType(countryActions.saveRequestAction),
+//     concatMap((action:any) => this.dataService.create(action.items)),
+//     tap(() => this.router.navigateByUrl('/countries'))
+//   ),
+//   {dispatch: false}
+// );
  
   updateRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(countryActions.updateRequestAction),
     switchMap(action => {
-      return this.dataService.update(action.item).pipe(
+      return this.dataService.update(action.id,action.item).pipe(
           map((item: any) => {
               return countryActions.updateSuccessAction({ item })
-          }),
+          }), tap(() => this.router.navigateByUrl('/countries'))
+          ,
           catchError(error => {
             return observableOf(countryActions.updateFailureAction({ error }))
           })

@@ -20,7 +20,7 @@ export class CurrencyService {
 
   getcurrecny(id: number)
   {
-      return this.http.get('https://localhost:44373/Currency/id?' + id); 
+      return this.http.get('https://localhost:44373/Currency/id?id=' + id); 
   }
 
   selectcurrecny(currecny: Currency) {
@@ -32,13 +32,11 @@ export class CurrencyService {
       return this.http.post<CurrencyViewModel>('https://localhost:44373/Currency', currecny);
   }
 
-  update(currecny: Currency) 
-  {
-      return this.http.post<Currency>('' + currecny.id, currecny);
+  update(Id:  number, currecny:CurrencyViewModel):Observable<CurrencyViewModel> {
+    return this.http.put<CurrencyViewModel>('https://localhost:44373/currency/?id='+Id,currecny);
+  }  
+  delete(Id: number): Observable<any> {
+    return this.http.delete('https://localhost:44373/Currency/Delete/id?' + 'id='+Id);
   }
 
-  delete(id:number) 
-  {
-      return this.http.delete<Currency>('' + id);
-  }    
 }

@@ -14,16 +14,16 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-  
+
   ],
   imports: [
     FormsModule,
     CommonModule,
     StoreModule.forFeature('countries', countryReducer),
     EffectsModule.forFeature([CountryEffects]),
-    
+
   ],
-  
+
   providers: [CountryService],
   bootstrap: [],
 
