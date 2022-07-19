@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 import { companyReducer } from './Store/Reducers/Company.reducer';
 import { CompanyService } from './Modules/company/company.service';
 import { CompanyEffects } from './Store/Effects/Company.effects';
@@ -24,7 +23,6 @@ import { CountryService } from './Modules/country/country.service';
 import { countryReducer } from './Store/Reducers/Country.reducer';
 import { CountryEffects } from './Store/Effects/Country.effects';
 import { CountryResolver } from './Store/Resolver/CountryResolver';
-import { environment } from 'src/environments/environment';
 import { CurrenciesComponent } from './Components/Currency Components/currencies/currencies.component';
 import { CurrencyCreateComponent } from './Components/Currency Components/currency-create/currency-create.component';
 import { CurrencyDetailComponent } from './Components/Currency Components/currency-detail/currency-detail.component';
@@ -35,7 +33,6 @@ import { CurrencyService } from './Modules/currency/currecny.service';
 import { CompanyModule } from './Modules/company/company.module';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {Ng2TelInputModule} from 'ng2-tel-input';
 
 const routes = [
   { path: 'companies',component: CompaniesComponent, resolve: {  companies: CompanyResolver}
@@ -71,7 +68,7 @@ const routes = [
     CountryModule,
     CompanyModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes),
     StoreModule.forFeature('company', companyReducer),
     EffectsModule.forRoot([CompanyEffects]),
     StoreModule.forRoot({ CompanyState: companyReducer }),
@@ -85,9 +82,7 @@ const routes = [
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25 }),
-    MatInputModule,
-    MatFormFieldModule,
+    RouterModule.forRoot(routes)
     
 
 
@@ -95,7 +90,6 @@ const routes = [
   providers: [CompanyResolver, CompanyService, CountryService, CountryResolver,CurrencyService],
   bootstrap: [AppComponent]
 })
-
 
 export class AppModule {
 

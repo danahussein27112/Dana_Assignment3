@@ -21,14 +21,14 @@
     color: white;
   }
   .button {
-    background-color: #4d5b4e; /* Green */
+    background-color: #315a33; /* Green */
     border: none;
     color: white;
     padding: 15px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 13px;
     margin: 4px 2px;
     cursor: pointer;
   }
