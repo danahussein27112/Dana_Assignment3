@@ -6,14 +6,16 @@ import { CompanyDetailComponent } from "src/app/Components/Company Components/co
 import { CompanyResolver } from "src/app/Store/Resolver/Company.resolver";
 
 const routes: Routes = [
-    {path: 'companies', component: CompaniesComponent , resolve: {  companies: CompanyResolver}},
-    {path:'company-detail/:id', component:CompanyDetailComponent},
-    { path: 'create-company', component: CompanyCreateComponent },
+  { path: 'companies', component: CompaniesComponent, resolve: { companies: CompanyResolver } },
+  { path: 'company-detail/:id', component: CompanyDetailComponent },
+  { path: 'create-company', component: CompanyCreateComponent },
 
-  ];
-  
-  @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
-  })
-  export class CompanyRoutingModule { }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class CompanyRoutingModule {
+
+}

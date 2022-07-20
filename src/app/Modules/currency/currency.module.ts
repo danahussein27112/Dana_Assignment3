@@ -5,6 +5,7 @@ import { CurrencyReducer } from 'src/app/Store/Reducers/Currency.reducer';
 import { CurrencyEffects } from 'src/app/Store/Effects/Currency.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { CurrencyRoutingModule } from './currency.routing.module';
 
 
 
@@ -14,7 +15,8 @@ import { StoreModule } from '@ngrx/store';
     CommonModule,
     StoreModule.forFeature('currencies', CurrencyReducer),
     EffectsModule.forFeature([CurrencyEffects]),
-  ],  
+    CurrencyRoutingModule
+  ],
   providers: [CurrencyService]
 
 })

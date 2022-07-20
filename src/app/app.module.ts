@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { MetaReducer, StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers } from './Store/Reducers';
 import { CompanyCreateComponent } from './Components/Company Components/company-create/company-create.component';
 import { CompaniesComponent } from './Components/Company Components/companies/companies.component';
@@ -31,21 +30,16 @@ import { CurrencyReducer } from './Store/Reducers/Currency.reducer';
 import { CurrencyEffects } from './Store/Effects/Currency.effects';
 import { CurrencyService } from './Modules/currency/currecny.service';
 import { CompanyModule } from './Modules/company/company.module';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 const routes = [
-  { path: 'companies',component: CompaniesComponent, resolve: {  companies: CompanyResolver}
-  },
-  { path: 'create-company', component: CompanyCreateComponent },
-  { path: 'countries', component: CountriesComponent,resolve: {countries: CountryResolver }},
-  {path :'countries/create-country',component:CountryCreateComponent},
-  {path :'create-currency',component:CurrencyCreateComponent},
-  {path : 'currency',component:CurrenciesComponent},
-  {path:'company-detail/:id', component:CompanyDetailComponent},
-  {path:'country-detail/:id', component:CountryDetailComponent},
-  {path:'currecny-detail/:id', component:CurrencyDetailComponent},
+ 
   {path: 'companies', loadChildren: () => import('./Modules/company/company.module').then(m => m.CompanyModule)},
+  {path: 'countries', loadChildren: () => import('./Modules/country/country.module').then(m => m.CountryModule)},
+ //{path: 'currencies', loadChildren: () => import('./Modules/currency/currency.module').then(m => m.CurrencyModule)},
+{path :'create-currency',component:CurrencyCreateComponent},
+{path : 'currencies',component:CurrenciesComponent},
+{path:'currency-detail/:id', component:CurrencyDetailComponent},
 ];
 
 @NgModule({

@@ -47,6 +47,6 @@ export class CurrenciesComponent implements OnInit {
 
   }}
   selectById(id:number) {
-    this.router.navigate(['currecny-detail/'+ id]);     
+    this.router.navigate(['currency-detail/'+ id]);     
 }
 }

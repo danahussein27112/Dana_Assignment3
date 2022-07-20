@@ -9,6 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CountriesComponent } from 'src/app/Components/Country Components/countries/countries.component';
 import { CountryCreateComponent } from 'src/app/Components/Country Components/country-create/country-create.component';
 import { FormsModule } from '@angular/forms';
+import { CountryRoutingModule } from './country.routing.module';
 
 
 
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     StoreModule.forFeature('countries', countryReducer),
     EffectsModule.forFeature([CountryEffects]),
+    CountryRoutingModule
 
   ],
 
