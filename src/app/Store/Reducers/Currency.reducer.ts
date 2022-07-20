@@ -1,4 +1,3 @@
-import { EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { Currency } from 'src/app/Modules/currency/currency.model';
 import { CurrencyViewModel } from 'src/app/Modules/currency/currencyViewModel';

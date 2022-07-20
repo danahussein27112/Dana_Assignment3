@@ -1,5 +1,5 @@
-import { createEffect, Actions, ofType, Effect } from '@ngrx/effects';
-import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { companyActionTypes } from '../Actions/company.actions';
@@ -18,8 +18,6 @@ export class CompanyEffects {
           return companyActionTypes.companiesLoaded({items})
         }))
     })
-    
-
   )
   );
 
@@ -63,9 +61,5 @@ loadCompanyRequestEffect$ = createEffect(() => this.actions$.pipe(
       )
     })
 ));
-
-
-
-
   constructor(private companyService: CompanyService, private actions$: Actions, private router: Router) {}
 }

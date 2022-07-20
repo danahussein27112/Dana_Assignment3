@@ -33,13 +33,13 @@ import { CompanyModule } from './Modules/company/company.module';
 
 
 const routes = [
- 
-  {path: 'companies', loadChildren: () => import('./Modules/company/company.module').then(m => m.CompanyModule)},
-  {path: 'countries', loadChildren: () => import('./Modules/country/country.module').then(m => m.CountryModule)},
- //{path: 'currencies', loadChildren: () => import('./Modules/currency/currency.module').then(m => m.CurrencyModule)},
-{path :'create-currency',component:CurrencyCreateComponent},
-{path : 'currencies',component:CurrenciesComponent},
-{path:'currency-detail/:id', component:CurrencyDetailComponent},
+
+  { path: 'companies', loadChildren: () => import('./Modules/company/company.module').then(m => m.CompanyModule) },
+  { path: 'countries', loadChildren: () => import('./Modules/country/country.module').then(m => m.CountryModule) },
+  //{path: 'currencies', loadChildren: () => import('./Modules/currency/currency.module').then(m => m.CurrencyModule)},
+  { path: 'create-currency', component: CurrencyCreateComponent },
+  { path: 'currencies', component: CurrenciesComponent },
+  { path: 'currency-detail/:id', component: CurrencyDetailComponent },
 ];
 
 @NgModule({
@@ -62,31 +62,20 @@ const routes = [
     CountryModule,
     CompanyModule,
     HttpClientModule,
-    // RouterModule.forRoot(routes),
     StoreModule.forFeature('company', companyReducer),
     EffectsModule.forRoot([CompanyEffects]),
     StoreModule.forRoot({ CompanyState: companyReducer }),
     StoreModule.forRoot({ CountryState: countryReducer }),
     StoreModule.forFeature('country', countryReducer),
     EffectsModule.forRoot([CountryEffects]),
-    StoreModule.forRoot(reducers, {
-      metaReducers,  }),
+    StoreModule.forRoot(reducers, { metaReducers }),
     StoreModule.forFeature('currency', CurrencyReducer),
     EffectsModule.forRoot([CurrencyEffects]),
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-    }),
     RouterModule.forRoot(routes)
-    
-
-
   ],
-  providers: [CompanyResolver, CompanyService, CountryService, CountryResolver,CurrencyService],
+  providers: [CompanyResolver, CompanyService, CountryService, CountryResolver, CurrencyService],
   bootstrap: [AppComponent]
 })
 
 export class AppModule {
-
-
-
 }

@@ -1,6 +1,4 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { Country } from "src/app/Modules/country/country.model";
-import { AppState } from "../Reducers";
 import { CountryState } from "../Reducers/Country.reducer";
 
 export const getState = createFeatureSelector<CountryState>('country'); 

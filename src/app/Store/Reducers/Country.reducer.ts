@@ -1,6 +1,4 @@
-import { EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { Action } from 'rxjs/internal/scheduler/Action';
 import { Country } from 'src/app/Modules/country/country.model';
 import { countryViewModel } from 'src/app/Modules/country/country.viewModel';
 import { CountryActions } from '../Actions/Country.actions';

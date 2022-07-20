@@ -1,6 +1,4 @@
 import { createSelector, createFeatureSelector, createReducer } from '@ngrx/store';
-import { Company } from 'src/app/Modules/company/company.model';
-import { CompanyViewModel } from 'src/app/Modules/company/company.ViewModel';
 import { CompanyState } from '../Reducers/Company.reducer';
 
 export const getState = createFeatureSelector<CompanyState>('company'); 

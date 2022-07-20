@@ -1,9 +1,6 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Company } from 'src/app/Modules/company/company.model';
 import { CompanyViewModel } from 'src/app/Modules/company/company.ViewModel';
-import { AppState } from '.';
 import { companyActionTypes } from '../Actions/company.actions';
 
 export interface CompanyState {

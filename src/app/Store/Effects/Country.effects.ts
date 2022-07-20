@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
-import { Observable, of as observableOf } from 'rxjs';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
+import {  of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap , concatMap, tap} from 'rxjs/operators';
-import { Country } from 'src/app/Modules/country/country.model';
 import { CountryService } from 'src/app/Modules/country/country.service';
 import * as countryActions from '../Actions/Country.actions';
 
 @Injectable()
 export class CountryEffects {
   constructor(private dataService: CountryService, private actions$: Actions, private router: Router) {}
-  
+
    loadCountryRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(countryActions.loadCountryRequestAction),
       switchMap(countryAction => {
