@@ -5,5 +5,6 @@ export interface Company {
     companyName: string;
     alias: string;
     country:Country |undefined;
+    countryId:number;
     
   }

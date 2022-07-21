@@ -15,43 +15,31 @@ import { CountryState } from 'src/app/Store/Reducers/Country.reducer';
   styleUrls: ['./countries.component.css']
 })
 export class CountriesComponent implements OnInit {
-    countries$?: Observable<Country[]>;
-  
-    countryToBeUpdated!: Country;
-  
-    isUpdateActivated = false;
-    isLoading$?: Observable<boolean>;
-    constructor(private store: Store<CountryState>,private router:Router) { }
-  
-  
-    ngOnInit() {
-  
-      this.store.dispatch(CountryActions.loadRequestAction());
-      this.isLoading$ = this.store.select(getCountryIsLoading);
-  
-      this.store.select(getCountries).subscribe(items => {
-        this.countries$ = of(items);
-        this.store.dispatch(CountryActions.loadSuccessAction({items}))
+  countries$?: Observable<Country[]>;
+  isLoading$?: Observable<boolean>;
+  constructor(private store: Store<CountryState>, private router: Router) { }
 
-       })
+  ngOnInit() {
 
-  
-  
-  
-  
-  
-    }
-  
-    delete(id: number) {
-      if (confirm('Are you sure do you want to delete this country?')) {
-      this.store.dispatch(CountryActions.deleteRequestAction({ id }));
-      this.store.dispatch(CountryActions.deleteSuccessAction({id}));
-      window.location.reload();
+    this.store.dispatch(CountryActions.loadRequestAction());
+    this.isLoading$ = this.store.select(getCountryIsLoading);
+    this.store.select(getCountries).subscribe(items => {
+      this.countries$ = of(items);
+      this.store.dispatch(CountryActions.loadSuccessAction({ items }))
 
-    }}
-    
-  selectById(id:number) {
-    this.router.navigate(['country-detail/'+ id]);     
-}
-
+    })
   }
+
+  delete(id: number) {
+    if (confirm('Are you sure do you want to delete this country?')) {
+      this.store.dispatch(CountryActions.deleteRequestAction({ id }));
+      this.store.dispatch(CountryActions.deleteSuccessAction({ id }));
+      window.location.reload();
+    }
+  }
+
+  selectById(id: number) {
+    this.router.navigate(['country-detail/' + id]);
+  }
+
+}

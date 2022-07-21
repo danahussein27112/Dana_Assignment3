@@ -9,16 +9,13 @@
           <th> Name</th>
           <th>code</th>
           <th>symbol</th>
-          <th>Country</th>
           <th>Actions</th>
       </tr>
       <tr *ngFor="let entity of (currencies$|async) ">
           <td>{{entity.id}}</td>
           <td>{{entity.currencyName}}</td>
           <td>{{entity.code}}</td>
-          <td>{{entity.symbol}}</td>
-          <td>{{entity.country}}</td>
-          
+          <td>{{entity.symbol}}</td>     
           <button type="submit" class="btn btn-success" (click)="selectById(entity.id)">Detail</button>
           <button type="button" class="btn btn-success" (click)="delete(entity.id)">Delete</button>
       </tr>

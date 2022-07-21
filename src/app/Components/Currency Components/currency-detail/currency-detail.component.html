@@ -13,10 +13,6 @@
             <input type="text" id="symbol" name="symbol" *ngIf="currency$|async"
                 [ngModel]="(currency$|async)?.symbol">
                 <br>
-                <label for="country"> Country </label>
-            <input type="text" id="country" name="country" *ngIf="currency$|async"
-                [ngModel]="(currency$|async)?.country">
-                <br>
             <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Save </button>
         </form>
     </div>

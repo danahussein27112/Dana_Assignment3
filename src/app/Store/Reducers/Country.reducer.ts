@@ -7,7 +7,7 @@ export interface CountryState {
     isLoading: boolean;
     item: Country[]
     countriesLoaded : boolean;
-    selectedCountry:countryViewModel|undefined
+    selectedCountry:Country|undefined
     addedCountry:countryViewModel|undefined
   }
   
@@ -81,7 +81,7 @@ item: action.items })),
   on(CountryActions.updateSuccessAction, (state, action) => ({
     ...state,
     isLoading: false,
-    selectedCountry: action.item,
+    addedCountry: action.item,
     error: null
   })),
  

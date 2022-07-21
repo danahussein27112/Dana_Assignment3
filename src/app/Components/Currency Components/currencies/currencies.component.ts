@@ -15,28 +15,17 @@ import { getCurrencies, getCurrencyIsLoading } from 'src/app/Store/Selectors/Cur
 })
 export class CurrenciesComponent implements OnInit {
   currencies$?: Observable<Currency[]>;
-
-  currencyToBeUpdated!: Currency;
-
-  isUpdateActivated = false;
   isLoading$?: Observable<boolean>;
   constructor(private store: Store<CurrencyState>,private router:Router) { }
-
 
   ngOnInit() {
 
     this.store.dispatch(CurrencyActions.loadRequestAction());
     this.isLoading$ = this.store.select(getCurrencyIsLoading);
-
     this.store.select(getCurrencies).subscribe(items => {
       this.currencies$ = of(items);
   
      })
-
-
-
-
-
   }
 
   delete(id: number) {

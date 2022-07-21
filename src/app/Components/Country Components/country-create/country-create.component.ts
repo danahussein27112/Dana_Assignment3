@@ -41,7 +41,7 @@ export class CountryCreateComponent implements OnInit {
 
 
     const item: countryViewModel = {
-      name: submittedForm.value.name, flag: submittedForm.value.flag, population: submittedForm.value.population,timeZone:submittedForm.value.timeZone,language:submittedForm.value.language,capitalCity:submittedForm.value.capitalCity,currency:submittedForm.value.currecny
+      name: submittedForm.value.name, flag: submittedForm.value.flag, population: submittedForm.value.population,timeZone:submittedForm.value.timeZone,language:submittedForm.value.language,capitalCity:submittedForm.value.capitalCity,currencyId:submittedForm.value.id
       
     };
    this.store.dispatch(CountryActions.saveRequestAction({item}));

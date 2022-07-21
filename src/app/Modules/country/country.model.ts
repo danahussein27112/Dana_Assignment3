@@ -8,6 +8,6 @@ export interface Country {
     timeZone:string;
     language:string;
     capitalCity:string;
-    currency:string;
+    currency:Currency;
   }
   

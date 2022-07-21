@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
-import { Observable, of as observableOf } from 'rxjs';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
+import { of as observableOf } from 'rxjs';
 import { catchError, map, concatMap, switchMap, tap } from 'rxjs/operators';
-import { Country } from 'src/app/Modules/country/country.model';
 import { CurrencyService } from 'src/app/Modules/currency/currecny.service';
 import * as currencyActions from '../Actions/Currency.actions';
 @Injectable()
@@ -46,7 +45,7 @@ export class CurrencyEffects {
       return this.dataService.savecurrecny(action.item).pipe(
         map((item: any) => {
           return currencyActions.saveSuccessAction({ item })
-        }), tap(() => this.router.navigateByUrl('/currency'))
+        }), tap(() => this.router.navigateByUrl('/currencies'))
       )
     })
   ))
@@ -57,7 +56,7 @@ export class CurrencyEffects {
       return this.dataService.update(action.id, action.item).pipe(
         map((item: any) => {
           return currencyActions.updateSuccessAction({ item })
-        }), tap(() => this.router.navigateByUrl('/currency')),
+        }), tap(() => this.router.navigateByUrl('/currencies')),
         catchError(error => {
           return observableOf(currencyActions.updateFailureAction({ error }))
         })
@@ -69,7 +68,7 @@ export class CurrencyEffects {
     this.actions$.pipe(
       ofType(currencyActions.deleteRequestAction),
       concatMap((action: any) => this.dataService.delete(action.id)),
-      tap(() => this.router.navigateByUrl('/currency'))
+      tap(() => this.router.navigateByUrl('/currencies'))
 
     ),
     { dispatch: false }

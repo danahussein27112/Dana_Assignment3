@@ -12,19 +12,27 @@
             <label for="population">Population</label>
             <input type="text" id="population" name="population" *ngIf="country$|async"
                 [ngModel]="(country$|async)?.population">
-                <br>
-                <label for="timeZone">Time Zone</label>
-                <input type="text" id="timeZone" name="timeZone"  *ngIf="country$|async" [ngModel]="(country$|async)?.timeZone">
-                <br>
-                <label for="language">Language</label>
-                <input type="text" id="language" name="language"  *ngIf="country$|async" [ngModel]="(country$|async)?.language">
-                <br>
-                <label for="capitalCity">Capital City</label>
-                <input type="text" id="capitalCity" name="capitalCity"  *ngIf="country$|async" [ngModel]="(country$|async)?.capitalCity">
-                <br>
-                <label for="currency">Currency</label>
-                <input type="text" id="currency" name="currency"  *ngIf="country$|async" [ngModel]="(country$|async)?.currency">
-                <br>
+            <br>
+            <label for="timeZone">Time Zone</label>
+            <input type="text" id="timeZone" name="timeZone" *ngIf="country$|async"
+                [ngModel]="(country$|async)?.timeZone">
+            <br>
+            <label for="language">Language</label>
+            <input type="text" id="language" name="language" *ngIf="country$|async"
+                [ngModel]="(country$|async)?.language">
+            <br>
+            <label for="capitalCity">Capital City</label>
+            <input type="text" id="capitalCity" name="capitalCity" *ngIf="country$|async"
+                [ngModel]="(country$|async)?.capitalCity">
+            <br>
+            <label for="id"> Currency </label>
+            <select class="form-control" name="id" id="id"[ngModel]="currencies$" [ngModel]="(country$|async)?.currency?.currencyName">
+              <option *ngFor="let currency of (currencies$|async)"[ngValue]="currency.id" >
+                {{currency.currencyName}}
+              </option>
+              <option>none</option>
+            </select>
+            <br>
             <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Save </button>
         </form>
     </div>

@@ -30,7 +30,7 @@ export const loadCountryRequestAction = createAction(
  
 export const loadCountrySuccessAction = createAction(
   countryActionTypes.LOAD_COUNTRY_FAILURE,
-  props<{ country: countryViewModel }>()
+  props<{ country: Country }>()
 );
  
 export const loadCountryFailureAction = createAction(

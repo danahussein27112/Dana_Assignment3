@@ -19,10 +19,10 @@
             <label for="capitalCity">Capital City</label>
             <input type="text" id="capitalCity" name="capitalCity" ngModel >
             <br>
-            <label for="currency"> Currency </label>
-            <select class="form-control" name="currency" id="currency"[ngModel]="currencies$">
-              <option *ngFor="let country of (currencies$|async)" >
-                {{country.currencyName}}
+            <label for="id"> Currency </label>
+            <select class="form-control" name="id" id="id"[ngModel]="currencies$">
+              <option *ngFor="let currency of (currencies$|async)"[ngValue]="currency.id" >
+                {{currency.currencyName}}
               </option>
               <option>none</option>
             </select>

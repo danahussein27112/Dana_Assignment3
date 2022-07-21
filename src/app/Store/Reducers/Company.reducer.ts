@@ -8,10 +8,9 @@ export interface CompanyState {
   isLoading: boolean;
   item: Company[]
   combaniesLoaded : boolean;
-  addedCompany:CompanyViewModel;
-  selectedCompany:Company
+  addedCompany:CompanyViewModel|undefined;
+  selectedCompany:Company|undefined
   selectedId:number
-  items: CompanyViewModel[]
 }
 
 export const initialState: CompanyState = {
@@ -19,10 +18,9 @@ export const initialState: CompanyState = {
   combaniesLoaded:false,
   isLoading:true,
   item:[],
-  selectedCompany:{alias:'undefined',companyName:'undefined',country:undefined,id:0} ,
-  addedCompany:{alias:'undefined',companyName:'undefined',countryName:'0'} ,
+  selectedCompany:undefined ,
+  addedCompany:undefined ,
   selectedId:0,
-  items:[]
 };
 
 export const companyReducer = createReducer(

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Update } from '@ngrx/entity';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { Company } from 'src/app/Modules/company/company.model';
-import { CompanyService } from 'src/app/Modules/company/company.service';
 import { Country } from 'src/app/Modules/country/country.model';
 import { companyActionTypes, loadCompanies } from 'src/app/Store/Actions/company.actions';
 import { CountryActions } from 'src/app/Store/Actions/Country.actions';
@@ -49,18 +47,14 @@ export class CompaniesComponent implements OnInit {
     if (confirm('Are you sure do you want to delete this company?')) {
     this.store.dispatch(companyActionTypes.deleteCompany({ id }));
     this.store.dispatch(companyActionTypes.deleteSuccessAction({id}));
-    this.store.dispatch(companyActionTypes.loadCompanies());
-    window.location.reload();
-    
+    this.onRefresh();
+    window.location.reload();  
   }}
   onRefresh()
   {
       this.store.dispatch(companyActionTypes.loadCompanies());
   }
-
   selectById(id:number) {
       this.router.navigate(['company-detail/'+ id]);     
   }
-
- 
 }

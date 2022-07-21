@@ -10,8 +10,8 @@
   </div>
   <div class="form-group">
     <label for="countryName"> Country </label>
-    <select class="form-control" name="countryName" id="countryName"[ngModel]="countries$"style="width: 400px"placeholder="Select a Country" >
-      <option *ngFor="let country of (countries$|async)" [ngValue]="country.name">
+    <select class="form-control" name="id" id="id"[ngModel]="countries$"style="width: 400px"placeholder="Select a Country" >
+      <option *ngFor="let country of (countries$|async)" [ngValue]="country.id">
         {{country.name}}
       </option>
     </select>
