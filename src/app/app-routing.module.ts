@@ -8,9 +8,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
 import { CompanyModule } from './Modules/company/company.module';
 import { CompanyResolver } from './Store/Resolver/Company.resolver';
-import { metaReducers,reducers } from './Store/Reducers';
+import { metaReducers, reducers } from './Store/Reducers';
 import { CountryResolver } from './Store/Resolver/CountryResolver';
 import { CountryModule } from './Modules/country/country.module';
+import { CurrencyModule } from './Modules/currency/currency.module';
+import { CurrencyCountriesModule } from './Modules/CurrencyCountries/currencyCountries.module';
 
 
 @NgModule({
@@ -20,15 +22,16 @@ import { CountryModule } from './Modules/country/country.module';
     BrowserModule,
     CompanyModule,
     CountryModule,
+    CurrencyModule,
+    CurrencyCountriesModule,
     HttpClientModule,
     EffectsModule.forRoot([EffectsModule]),
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
 
-    StoreDevtoolsModule.instrument({maxAge: 25}),
   ],
-  providers: [CompanyResolver,CountryResolver],
+  providers: [CompanyResolver, CountryResolver],
   bootstrap: [AppComponent],
 
 })

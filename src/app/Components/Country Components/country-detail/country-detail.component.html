@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
-            <label for="name">Company Name</label>
+            <label for="name">Country Name</label>
             <input type="text" id="name" name="name" *ngIf="country$|async" [ngModel]="(country$|async)?.name">
             <br>
             <label for="flag">flag</label>
@@ -26,7 +26,7 @@
                 [ngModel]="(country$|async)?.capitalCity">
             <br>
             <label for="id"> Currency </label>
-            <select class="form-control" name="id" id="id"[ngModel]="currencies$" [ngModel]="(country$|async)?.currency?.currencyName">
+            <select class="form-control" name="id" id="id"[ngModel]="(country$|async)?.currency?.id">
               <option *ngFor="let currency of (currencies$|async)"[ngValue]="currency.id" >
                 {{currency.currencyName}}
               </option>

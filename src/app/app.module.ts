@@ -30,16 +30,22 @@ import { CurrencyReducer } from './Store/Reducers/Currency.reducer';
 import { CurrencyEffects } from './Store/Effects/Currency.effects';
 import { CurrencyService } from './Modules/currency/currecny.service';
 import { CompanyModule } from './Modules/company/company.module';
+import { CurrencyCountreisComponent } from './Components/currency-countreis/currency-countreis.component';
+import { CurrencyModule } from './Modules/currency/currency.module';
+import { CurrencyCountriesModule } from './Modules/CurrencyCountries/currencyCountries.module';
+import { CurrencyCountriesEffects } from './Store/Effects/CurrencyCountreis.effects';
+import { CurrencyCountriesReducer } from './Store/Reducers/CurrencyCountries.reducer';
+import { CurrencyCountriesService } from './Modules/CurrencyCountries/currencyCountries.service';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 
 const routes = [
 
   { path: 'companies', loadChildren: () => import('./Modules/company/company.module').then(m => m.CompanyModule) },
   { path: 'countries', loadChildren: () => import('./Modules/country/country.module').then(m => m.CountryModule) },
-  //{path: 'currencies', loadChildren: () => import('./Modules/currency/currency.module').then(m => m.CurrencyModule)},
-  { path: 'create-currency', component: CurrencyCreateComponent },
-  { path: 'currencies', component: CurrenciesComponent },
-  { path: 'currency-detail/:id', component: CurrencyDetailComponent },
+  { path: 'currencies', loadChildren: () => import('./Modules/currency/currency.module').then(m => m.CurrencyModule) },
+  { path: 'currency/countries/:id', component: CurrencyCountreisComponent }
 ];
 
 @NgModule({
@@ -54,26 +60,36 @@ const routes = [
     CountriesComponent,
     CurrencyCreateComponent,
     CurrencyDetailComponent,
+    CurrencyCountreisComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     CountryModule,
     CompanyModule,
-    HttpClientModule,
+    CurrencyModule,
+    CurrencyCountriesModule,
     StoreModule.forFeature('company', companyReducer),
-    EffectsModule.forRoot([CompanyEffects]),
-    StoreModule.forRoot({ CompanyState: companyReducer }),
-    StoreModule.forRoot({ CountryState: countryReducer }),
     StoreModule.forFeature('country', countryReducer),
-    EffectsModule.forRoot([CountryEffects]),
-    StoreModule.forRoot(reducers, { metaReducers }),
     StoreModule.forFeature('currency', CurrencyReducer),
+    StoreModule.forFeature('currencyCountries', CurrencyCountriesReducer),
     EffectsModule.forRoot([CurrencyEffects]),
-    RouterModule.forRoot(routes)
+    EffectsModule.forRoot([CurrencyCountriesEffects]),
+    EffectsModule.forRoot([CountryEffects]),
+    EffectsModule.forRoot([CompanyEffects]),
+    RouterModule.forRoot(routes),
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+
   ],
-  providers: [CompanyResolver, CompanyService, CountryService, CountryResolver, CurrencyService],
+  providers: [CompanyResolver,
+    CompanyService,
+    CountryService,
+    CountryResolver,
+    CurrencyService,
+    CurrencyCountriesService],
   bootstrap: [AppComponent]
 })
 

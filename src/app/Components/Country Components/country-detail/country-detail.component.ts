@@ -18,8 +18,8 @@ import { getCurrencies } from 'src/app/Store/Selectors/Currency.selector';
 })
 export class CountryDetailComponent implements OnInit {
 
- 
-  country$?: Observable<Country|undefined>;
+
+  country$?: Observable<Country | undefined>;
   selectedId$?: Observable<number>;
   error$?: Observable<any>;
   currencies$?: Observable<Currency[]>;
@@ -36,24 +36,25 @@ export class CountryDetailComponent implements OnInit {
     )
     this.store.select(getCurrencies).subscribe(items => {
       this.currencies$ = of(items);
-  
-  })
+
+    })
   }
   onSubmit(submittedForm: any) {
     const id: number = this.route.snapshot.params['id'];
 
     console.log(submittedForm.value);
-debugger
+    debugger
     if (submittedForm.invalid) {
       return;
     }
     const item: countryViewModel = {
-      name: submittedForm.value.name, flag: submittedForm.value.flag, population: submittedForm.value.population,timeZone:submittedForm.value.timeZone,language:submittedForm.value.language,capitalCity:submittedForm.value.capitalCity,currencyId:submittedForm.value.currecny
+      name: submittedForm.value.name, flag: submittedForm.value.flag, population: submittedForm.value.population, timeZone: submittedForm.value.timeZone, language: submittedForm.value.language, capitalCity: submittedForm.value.capitalCity, currencyId: submittedForm.value.id
 
     };
     this.store.dispatch(CountryActions.updateRequestAction({ item, id }));
     this.store.dispatch(CountryActions.updateSuccessAction({ item }));
-    this.router.navigateByUrl('/countries')  }
-  onChange(){
+    this.router.navigateByUrl('/countries')
+  }
+  onChange() {
   }
 }

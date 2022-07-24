@@ -20,7 +20,7 @@ export class CurrencyDetailComponent implements OnInit {
   selectedId$?: Observable<number>;
   error$?: Observable<any>;
 
-  constructor(private router: Router, private route: ActivatedRoute, private store: Store<AppState>) { }
+  constructor( private route: ActivatedRoute, private store: Store<AppState>) { }
 
   ngOnInit(): void {
 

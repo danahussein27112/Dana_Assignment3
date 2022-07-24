@@ -16,7 +16,9 @@
           <td>{{entity.currencyName}}</td>
           <td>{{entity.code}}</td>
           <td>{{entity.symbol}}</td>     
-          <button type="submit" class="btn btn-success" (click)="selectById(entity.id)">Detail</button>
+          <button type="submit" class="btn btn-success" (click)="selectById(entity.id)">Edit</button>
           <button type="button" class="btn btn-success" (click)="delete(entity.id)">Delete</button>
+          <button type="button" class="btn btn-success" (click)="goToCountries(entity.id)">Countries</button>
+
       </tr>
 </table>

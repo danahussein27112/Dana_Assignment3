@@ -23,8 +23,8 @@
     <td>{{entity.timeZone}}</td>
     <td>{{entity.language}}</td>
     <td>{{entity.capitalCity}}</td>
-    <td>{{entity.currency.currencyName}}</td>
-    <button type="submit" class="btn btn-success" (click)="selectById(entity.id)">Detail</button> <button type="button"
+    <td>{{entity.currency.symbol}}  {{entity.currency.currencyName}}</td>
+    <button type="submit" class="btn btn-success" (click)="selectById(entity.id)">Edit</button> <button type="button"
       class="btn btn-success" (click)="delete(entity.id)">Delete</button>
   </tr>
 </table>

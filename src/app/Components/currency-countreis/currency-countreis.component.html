@@ -1,0 +1,13 @@
+<h1 style=" text-align: center">List of countries</h1>
+<table id="countries">
+  <tr>
+    <th> Country Name</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let entity of countries$ | async ">
+
+    <td>{{entity.country.name}}</td>
+    <button type="submit" class="btn btn-success" (click)="selectById(entity.country.id)">Edit</button> 
+
+  </tr>
+</table>

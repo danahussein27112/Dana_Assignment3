@@ -49,7 +49,7 @@ export class CompanyDetailComponent implements OnInit {
     }
     const items: CompanyViewModel = {
       companyName: submittedForm.value.companyName, alias: submittedForm.value.alias
-,countryId:submittedForm.value.id
+,countryId:submittedForm.value.countryId
     };
     this.store.dispatch(companyActionTypes.updateCompany({ items, id }));
     this.store.dispatch(companyActionTypes.updateSuccessAction({ items }));

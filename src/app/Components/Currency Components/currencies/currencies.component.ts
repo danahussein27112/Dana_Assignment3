@@ -16,7 +16,7 @@ import { getCurrencies, getCurrencyIsLoading } from 'src/app/Store/Selectors/Cur
 export class CurrenciesComponent implements OnInit {
   currencies$?: Observable<Currency[]>;
   isLoading$?: Observable<boolean>;
-  constructor(private store: Store<CurrencyState>,private router:Router) { }
+  constructor(private store: Store<CurrencyState>, private router: Router) { }
 
   ngOnInit() {
 
@@ -24,18 +24,23 @@ export class CurrenciesComponent implements OnInit {
     this.isLoading$ = this.store.select(getCurrencyIsLoading);
     this.store.select(getCurrencies).subscribe(items => {
       this.currencies$ = of(items);
-  
-     })
+
+    })
+   
   }
 
   delete(id: number) {
     if (confirm('Are you sure do you want to delete this currency?')) {
-    this.store.dispatch(CurrencyActions.deleteRequestAction({ id }));
-    this.store.dispatch(CurrencyActions.deleteSuccessAction({id}));
-    window.location.reload();
+      this.store.dispatch(CurrencyActions.deleteRequestAction({ id }));
+      this.store.dispatch(CurrencyActions.deleteSuccessAction({ id }));
+      window.location.reload();
 
-  }}
-  selectById(id:number) {
-    this.router.navigate(['currency-detail/'+ id]);     
-}
+    }
+  }
+  selectById(id: number) {
+    this.router.navigate(['currency-detail/' + id]);
+  }
+  goToCountries(id: number) {
+    this.router.navigate(['currency/countries/' + id]);
+  }
 }

@@ -20,7 +20,7 @@ export class CountryCreateComponent implements OnInit {
   currencies$?: Observable<Currency[]>;
   isLoading$?: Observable<boolean>;
 
-  
+
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
@@ -29,10 +29,11 @@ export class CountryCreateComponent implements OnInit {
 
     this.store.select(getCurrencies).subscribe(items => {
       this.currencies$ = of(items);
-  
-  })}
 
-  onSubmit(submittedForm:any) {
+    })
+  }
+
+  onSubmit(submittedForm: any) {
     console.log(submittedForm.value);
 
     if (submittedForm.invalid) {
@@ -41,10 +42,10 @@ export class CountryCreateComponent implements OnInit {
 
 
     const item: countryViewModel = {
-      name: submittedForm.value.name, flag: submittedForm.value.flag, population: submittedForm.value.population,timeZone:submittedForm.value.timeZone,language:submittedForm.value.language,capitalCity:submittedForm.value.capitalCity,currencyId:submittedForm.value.id
-      
+      name: submittedForm.value.name, flag: submittedForm.value.flag, population: submittedForm.value.population, timeZone: submittedForm.value.timeZone, language: submittedForm.value.language, capitalCity: submittedForm.value.capitalCity, currencyId: submittedForm.value.id
+
     };
-   this.store.dispatch(CountryActions.saveRequestAction({item}));
-   this.store.dispatch(CountryActions.saveSuccessAction({item}));
+    this.store.dispatch(CountryActions.saveRequestAction({ item }));
+    this.store.dispatch(CountryActions.saveSuccessAction({ item }));
   }
 }

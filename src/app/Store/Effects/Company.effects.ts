@@ -8,17 +8,17 @@ import { Company } from 'src/app/Modules/company/company.model';
 
 @Injectable()
 export class CompanyEffects {
-  
+
   loadCompanies$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(companyActionTypes.loadCompanies),
-    switchMap(companyAction=>{
-      return this.companyService.getAll().pipe(map
-        ((items:Company[])=> {
-          return companyActionTypes.companiesLoaded({items})
-        }))
-    })
-  )
+    this.actions$.pipe(
+      ofType(companyActionTypes.loadCompanies),
+      switchMap(companyAction => {
+        return this.companyService.getAll().pipe(
+          map((items: Company[]) => {
+            return companyActionTypes.companiesLoaded({ items })
+          }))
+      })
+    )
   );
 
   createCompany$ = createEffect(() =>
@@ -27,7 +27,7 @@ export class CompanyEffects {
       concatMap((action) => this.companyService.create(action.items)),
       tap(() => this.router.navigateByUrl('/companies'))
     ),
-    {dispatch: false}
+    { dispatch: false }
   );
 
   deleteCompany$ = createEffect(() =>
@@ -37,29 +37,29 @@ export class CompanyEffects {
       tap(() => this.router.navigateByUrl('/companies'))
 
     ),
-    {dispatch: false}
+    { dispatch: false }
   );
 
   updateRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(companyActionTypes.updateCompany),
     switchMap(action => {
-      return this.companyService.update(action.id,action.items).pipe(
-          map((items: any,id:number) => {
-              return companyActionTypes.updateSuccessAction({ items })
-          }),      tap(() => this.router.navigateByUrl('/companies'))
-        )
-      })
+      return this.companyService.update(action.id, action.items).pipe(
+        map((items: any, id: number) => {
+          return companyActionTypes.updateSuccessAction({ items })
+        }), tap(() => this.router.navigateByUrl('/companies'))
+      )
+    })
   ))
 
-loadCompanyRequestEffect$ = createEffect(() => this.actions$.pipe(
-  ofType(companyActionTypes.loadCompanyRequestAction),
+  loadCompanyRequestEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(companyActionTypes.loadCompanyRequestAction),
     switchMap(companyAction => {
       return this.companyService.getCompany(companyAction.id).pipe(
         map((company: any) => {
-            return companyActionTypes.loadCompanySuccessAction({ company })
+          return companyActionTypes.loadCompanySuccessAction({ company })
         }),
       )
     })
-));
-  constructor(private companyService: CompanyService, private actions$: Actions, private router: Router) {}
+  ));
+  constructor(private companyService: CompanyService, private actions$: Actions, private router: Router) { }
 }
