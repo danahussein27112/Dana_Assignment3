@@ -38,7 +38,6 @@ export const loadCountryFailureAction = createAction(
   props<{ error: string }>()
 );
  
-///////
  
 export const loadRequestAction = createAction(
   countryActionTypes.LOAD_REQUEST
@@ -88,7 +87,6 @@ export const updateSuccessAction = createAction(
   props<{ item: countryViewModel }>()
 );
    
-////
  
 export const deleteRequestAction = createAction(
   countryActionTypes.DELETE_REQUEST,

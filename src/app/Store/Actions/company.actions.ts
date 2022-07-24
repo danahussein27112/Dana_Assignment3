@@ -9,68 +9,68 @@ export const loadCompanies = createAction(
 );
 
 export const companiesLoaded = createAction(
-  '[Companies Effect] Companies Loaded Successfully',
+  '[Companies ] Companies Loaded Successfully',
   props<{items: Company[]}>()
 );
 export const loadFailureAction = createAction(
-  '[Company ] Load Country Failure',
+  '[Company ] Load Company Failure',
   props<{ error: string }>()
 );
  
 
 export const createCompany = createAction(
-  '[Create Company Component] Create Company',
+  '[Create Company ] Create Company',
   props<{items: CompanyViewModel}>()
 );
 export const createFailureAction = createAction(
-'[Create Company Component] Create Failure'
+'[Create Company ] Create Failure'
 ,  props<{ error: string }>()
 );
  
 export const createSuccessAction = createAction(
-  '[Create Company Component] Create Success',
+  '[Create Company ] Create Success',
   props<{ items: CompanyViewModel }>()
 );
 export const deleteFailureAction = createAction(
-  '[Delete Company Component] Delete Failure',
+  '[Delete Company ] Delete Failure',
   props<{ error: string }>()
 );
    
 export const deleteSuccessAction = createAction(
-  '[Delete Company Component] Delete Success',
+  '[Delete Company ] Delete Success',
   props<{ id: number }>()
 );
 
 export const deleteCompany = createAction(
-  '[Companies List Operations] Delete Company',
+  ' Delete Company',
   props<{id: number}>()
 );
 
 export const updateCompany = createAction(
-  '[Companies List Operations] Update Company',
+  'Update Company',
   props<{items: CompanyViewModel,id:number}>()
 );
 export const updateFailureAction = createAction(
-  '[Companies List Operations] Update Company Failure',
+  ' Update Company Failure',
   props<{ error: string }>()
 );
  
 export const updateSuccessAction = createAction(
-  '[Companies List Operations] Update Company Success',
+  'Update Company Success',
   props<{ items: CompanyViewModel }>()
 );
 export const loadCompanyRequestAction = createAction(
-  '[company get Company request]',
+  '[get Company request]',
   props<{ id: number }>()
 );
  
 export const loadCompanySuccessAction = createAction(
-  '[company] get Company Success]',
+  ' get Company Success',
   props<{ company:Company }>()
 );
  
 export const loadCompanyFailureAction = createAction(
-  '[Company] get Company failed]',
+  'get Company failed',
   props<{ error: string }>()
 );
 

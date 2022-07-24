@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { currencyCountreis } from 'src/app/Modules/CurrencyCountries/currencyCountries.model';
-import { CurrencyCountriesActions } from 'src/app/Store/Actions/currencyCountries';
+import { CurrencyCountriesActions } from 'src/app/Store/Actions/CurrencyCountries.actions';
 import { AppState } from 'src/app/Store/Reducers';
 import { getCountries, getCountryIsLoading } from 'src/app/Store/Selectors/CurrencyCountries.selector';
 

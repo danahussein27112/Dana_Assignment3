@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { currencyCountreis } from "src/app/Modules/CurrencyCountries/currencyCountries.model";
-import { CurrencyCountriesActions } from '../Actions/currencyCountries';
+import { CurrencyCountriesActions } from '../Actions/CurrencyCountries.actions';
 
 export interface CurrencyCountriesState {
   err: any;

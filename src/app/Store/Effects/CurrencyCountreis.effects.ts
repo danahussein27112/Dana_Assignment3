@@ -4,8 +4,7 @@ import { CurrencyCountriesService } from "src/app/Modules/CurrencyCountries/curr
 import { of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap, concatMap, tap } from 'rxjs/operators';
 import { Injectable } from "@angular/core";
-import { currencyCountreis } from "src/app/Modules/CurrencyCountries/currencyCountries.model";
-import { CurrencyCountriesActions } from "../Actions/currencyCountries";
+import { CurrencyCountriesActions } from "../Actions/CurrencyCountries.actions";
 
 @Injectable()
 

@@ -38,7 +38,6 @@ export const loadCurrencyFailureAction = createAction(
   props<{ error: string }>()
 );
  
-///////
  
 export const loadRequestAction = createAction(
   currencyActionTypes.LOAD_REQUEST
@@ -54,7 +53,7 @@ export const loadSuccessAction = createAction(
   props<{ items: Currency[] }>()
 );
  
-////////
+
  
 export const saveRequestAction = createAction(
   currencyActionTypes.SAVE_REQUEST,
@@ -86,7 +85,7 @@ export const updateSuccessAction = createAction(
   props<{ item: CurrencyViewModel}>()
 );
    
-////
+
  
 export const deleteRequestAction = createAction(
   currencyActionTypes.DELETE_REQUEST,
