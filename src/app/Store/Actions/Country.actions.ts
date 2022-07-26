@@ -2,120 +2,98 @@ import { Action, createAction, props } from '@ngrx/store';
 import { Country } from 'src/app/Modules/country/country.model';
 import { countryViewModel } from 'src/app/Modules/country/country.viewModel';
  
-export enum countryActionTypes {
-  LOAD_COUNTRY_REQUEST = '[Country] Load Country Request',
-  LOAD_COUNTRY_FAILURE = '[Country] Load Country Failure',
-  LOAD_COUNTRY_SUCCESS = '[Country] Load Country Success',
- 
-  LOAD_REQUEST = '[Country] Load Request',
-  LOAD_FAILURE = '[Country] Load Failure',
-  LOAD_SUCCESS = '[Country] Load Success',
- 
-  SAVE_REQUEST = '[Country] Save',
-  SAVE_FAILURE = '[Country] Save Failure',
-  SAVE_SUCCESS = '[Country] Save Success',
- 
-  UPDATE_REQUEST = '[Country] Update',
-  UPDATE_FAILURE = '[Country] Update Failure',
-  UPDATE_SUCCESS = '[Country] Update Success',
- 
-  DELETE_REQUEST = '[Country] Delete',
-  DELETE_FAILURE = '[Country] Delete Failure',
-  DELETE_SUCCESS = '[Country] Delete Success'
-}
 export const loadCountryRequestAction = createAction(
-  countryActionTypes.LOAD_COUNTRY_REQUEST,
+  '[Country] Load Country Request',
   props<{ id: number }>()
 );
  
 export const loadCountrySuccessAction = createAction(
-  countryActionTypes.LOAD_COUNTRY_FAILURE,
+  '[Country] Load Country Success',
   props<{ country: Country }>()
 );
  
 export const loadCountryFailureAction = createAction(
-  countryActionTypes.LOAD_COUNTRY_SUCCESS,
+  '[Country] Load Country Failure',
   props<{ error: string }>()
 );
  
  
-export const loadRequestAction = createAction(
-  countryActionTypes.LOAD_REQUEST
+export const loadCountriesRequestAction = createAction(
+  '[Country] Load countries Request'
 );
  
-export const loadFailureAction = createAction(
-  countryActionTypes.LOAD_FAILURE,
+export const loadCountriesFailureAction = createAction(
+  '[Country] Load countries Failure',
   props<{ error: string }>()
 );
  
-export const loadSuccessAction = createAction(
-  countryActionTypes.LOAD_SUCCESS,
+export const loadCountriesSuccessAction = createAction(
+  '[Country] Load countries Success',
   props<{ items: Country[] }>()
 );
  
-////////
- 
-export const saveRequestAction = createAction(
-  countryActionTypes.SAVE_REQUEST,
+
+export const createCountryRequestAction = createAction(
+  '[Country] Create Country request',
   props<{ item: countryViewModel }>()
 );
  
-export const saveFailureAction = createAction(
-  countryActionTypes.SAVE_FAILURE,
+export const createCountryFailureAction = createAction(
+  '[Country] Create Country Failure',
   props<{ error: string }>()
 );
  
-export const saveSuccessAction = createAction(
-  countryActionTypes.SAVE_SUCCESS,
-  props<{ item: countryViewModel }>()
+export const createCountrySuccessAction = createAction(
+  '[Country] Create country Success',
+  props<{ item: Country }>()
 );
  
 ///
  
-export const updateRequestAction = createAction(
-  countryActionTypes.UPDATE_REQUEST,
+export const updateCountryRequestAction = createAction(
+  '[Country] Update Country request',
   props<{ item: countryViewModel ,id:number}>()
 );
  
-export const updateFailureAction = createAction(
-  countryActionTypes.UPDATE_FAILURE,
+export const updateCountryFailureAction = createAction(
+  '[Country] Update country Failure',
   props<{ error: string }>()
 );
  
-export const updateSuccessAction = createAction(
-  countryActionTypes.UPDATE_SUCCESS,
-  props<{ item: countryViewModel }>()
+export const updateCountrySuccessAction = createAction(
+  '[Country] Update country Success',
+  props<{ item: Country }>()
 );
    
  
-export const deleteRequestAction = createAction(
-  countryActionTypes.DELETE_REQUEST,
+export const deleteCountryRequestAction = createAction(
+  '[Country] Delete Country request',
   props<{ id: number }>()
 );
  
-export const deleteFailureAction = createAction(
-  countryActionTypes.DELETE_FAILURE,
+export const deleteCountryFailureAction = createAction(
+  '[Country] Delete country Failure',
   props<{ error: string }>()
 );
    
-export const deleteSuccessAction = createAction(
-  countryActionTypes.DELETE_SUCCESS,
+export const deleteCountrySuccessAction = createAction(
+  '[Country] Delete country Success',
   props<{ id: number }>()
 );
 export const CountryActions = {
   loadCountryRequestAction,
   loadCountrySuccessAction,
   loadCountryFailureAction,
-  loadRequestAction,
-  loadFailureAction,
-  loadSuccessAction,
-  saveRequestAction,
-  saveFailureAction,
-  saveSuccessAction,
-  updateRequestAction,
-  updateFailureAction,
-  updateSuccessAction,
-  deleteRequestAction,
-  deleteFailureAction,
-  deleteSuccessAction,
+  loadCountriesRequestAction,
+  loadCountriesFailureAction,
+  loadCountriesSuccessAction,
+  createCountryRequestAction,
+  createCountryFailureAction,
+  createCountrySuccessAction,
+  updateCountryRequestAction,
+  updateCountryFailureAction,
+  updateCountrySuccessAction,
+  deleteCountryRequestAction,
+  deleteCountryFailureAction,
+  deleteCountrySuccessAction,
 };

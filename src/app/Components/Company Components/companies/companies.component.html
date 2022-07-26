@@ -1,24 +1,35 @@
 <h1 style=" text-align: center">List of companies</h1>
-<div class="col-sm-6 align-bottom">
-  <button class="button" routerLink="/create-company">Create new company</button>
+<div>
+  <button class="button" routerLink="/create-company" title="Add new company"><img
+      src="https://cdn-icons-png.flaticon.com/512/2312/2312159.png" height="30" width="30" />Add
+  </button>
 </div>
 
 <table id="companies">
-      <tr>
-          <th>ID</th>
-          <th>Company Name</th>
-          <th>Alias</th>
-          <th>Country</th>
-          <th>Actions</th>
-      </tr>
-      <tr *ngFor="let entity of (companies$ | async)">
-          <td>{{entity.id}}</td>
-          <td>{{entity.companyName}}</td>
-          <td>{{entity.alias}}</td>
-          <td>{{entity.country?.name}}
-            
-          </td>
-          <button type="submit" class="btn btn-success"(click)="selectById(entity.id)">Edit</button>
-          <button type="button" class="btn btn-success" (click)="delete(entity.id)">Delete</button>
-      </tr>
+  <tr>
+    <th>ID</th>
+    <th>Company Name</th>
+    <th>Alias</th>
+    <th>Country</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor="let entity of (companies$ | async)">
+    <td>{{entity.id}}</td>
+    <td>{{entity.companyName}}</td>
+    <td>{{entity.alias}}</td>
+    <td>{{entity.country?.name}}
+
+    </td>
+    <td><button type="submit" (click)="selectById(entity.id)" title="Edit"><img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpAyw7TK8OpqoWdMpCRbRa-X2xmWAsx2AIEw&usqp=CAU"
+          height="30" width="30"></button></td>
+    <td><button type="button" (click)="delete(entity.id)" title="Delete">
+        <img
+          src="https://icons-for-free.com/download-icon-delete+remove+trash+trash+bin+trash+can+icon-1320073117929397588_512.png"
+          height="30" width="30"></button></td>
+
+
+  </tr>
+
 </table>

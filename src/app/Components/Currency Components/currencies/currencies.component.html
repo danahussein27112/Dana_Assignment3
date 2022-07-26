@@ -1,24 +1,33 @@
 <h1 style=" text-align: center">List of currencies</h1>
-<div class="col-sm-6 align-bottom">
-  <button class="button" routerLink="/create-currency">Create new currency</button>
+<div>
+  <button class="button" routerLink="/create-currency" title="Add new company"><img
+      src="https://cdn-icons-png.flaticon.com/512/2312/2312159.png" height="30" width="30" />Add
+  </button>
 </div>
-
-<table id="countries">
+<table id="currencies">
       <tr>
           <th>ID</th>
           <th> Name</th>
           <th>code</th>
           <th>symbol</th>
           <th>Actions</th>
+          <th>Countries</th>
+
       </tr>
       <tr *ngFor="let entity of (currencies$|async) ">
           <td>{{entity.id}}</td>
           <td>{{entity.currencyName}}</td>
           <td>{{entity.code}}</td>
           <td>{{entity.symbol}}</td>     
-          <button type="submit" class="btn btn-success" (click)="selectById(entity.id)">Edit</button>
-          <button type="button" class="btn btn-success" (click)="delete(entity.id)">Delete</button>
-          <button type="button" class="btn btn-success" (click)="goToCountries(entity.id)">Countries</button>
-
+          <button type="submit" (click)="selectById(entity.id)" title="Edit"><img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpAyw7TK8OpqoWdMpCRbRa-X2xmWAsx2AIEw&usqp=CAU"
+            height="30" width="30"></button>
+      <button type="button" (click)="delete(entity.id)" title="Delete">
+          <img
+            src="https://icons-for-free.com/download-icon-delete+remove+trash+trash+bin+trash+can+icon-1320073117929397588_512.png"
+            height="30" width="30"></button>
+            <td>
+          <button type="button"  (click)="goToCountries(entity.id)"><img src="https://static.thenounproject.com/png/2450449-200.png"height="30" width="30" title="countries"></button>
+            </td>
       </tr>
 </table>

@@ -7,7 +7,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { countryReducer } from 'src/app/Store/Reducers/Country.reducer';
 import { BrowserModule } from '@angular/platform-browser';
 import { CountriesComponent } from 'src/app/Components/Country Components/countries/countries.component';
-import { CountryCreateComponent } from 'src/app/Components/Country Components/country-create/country-create.component';
 import { FormsModule } from '@angular/forms';
 import { CountryRoutingModule } from './country.routing.module';
 
@@ -20,7 +19,7 @@ import { CountryRoutingModule } from './country.routing.module';
   imports: [
     FormsModule,
     CommonModule,
-    StoreModule.forFeature('countries', countryReducer),
+    StoreModule.forFeature('country', countryReducer),
     EffectsModule.forFeature([CountryEffects]),
     CountryRoutingModule
 

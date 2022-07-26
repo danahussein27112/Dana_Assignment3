@@ -1,16 +1,16 @@
-<div *ngIf="currency$|async">
-    <h3>Country Detail </h3>
+<h1 *ngIf="isAddMode">Add Currency</h1>
+<h1 *ngIf="!isAddMode">Edit Currency</h1>
 
     <div class="form-group">
         <form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
             <label for="name">Currency Name</label>
-            <input type="text" id="name" name="name" *ngIf="currency$|async" [ngModel]="(currency$|async)?.currencyName">
+            <input type="text" id="name" name="name"  [ngModel]="(currency$|async)?.currencyName">
             <br>
             <label for="code">Code</label>
-            <input type="text" id="code" name="code" *ngIf="currency$|async" [ngModel]="(currency$|async)?.code">
+            <input type="text" id="code" name="code"  [ngModel]="(currency$|async)?.code">
             <br>
             <label for="symbol">Symbol</label>
-            <input type="text" id="symbol" name="symbol" *ngIf="currency$|async"
+            <input type="text" id="symbol" name="symbol" 
                 [ngModel]="(currency$|async)?.symbol">
                 <br>
             <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Save </button>

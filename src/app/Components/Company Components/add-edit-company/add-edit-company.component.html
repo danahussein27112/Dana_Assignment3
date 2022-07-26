@@ -1,0 +1,29 @@
+<h1 *ngIf="isAddMode">Add Company</h1>
+<h1 *ngIf="!isAddMode">Edit Company</h1>
+<div class="form-group">
+  <form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+    <label for="companyName">Company Name</label>
+    <input type="text" id="companyName" name="companyName" [ngModel]="(company$|async)?.companyName">
+    <!-- <mat-error *ngIf="(company$|async)?.companyName?.">Company Name is required</mat-error> -->
+    <br>
+    <br>
+    <label for="alias">Alias</label>
+    <div>
+      <input type="text" id="alias" name="alias" [ngModel]="(company$|async)?.alias" required>
+      <!-- <mat-error *ngIf="createForm.alias.$invalid">{{createForm.companyName.$invalid}}</mat-error>  -->
+    </div>
+    <br>
+    <br>
+    <label for="countryId"> Country </label>
+    <select name="countryId" id="countryId" class="form-control" [ngModel]="(company$|async)?.country?.id" required>
+
+      <option *ngFor="let country of (countries$|async)" [ngValue]="country.id">
+        {{country.name}}
+      </option>
+    </select>
+    <br>
+    <div>
+      <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Save </button>
+    </div>
+  </form>
+</div>

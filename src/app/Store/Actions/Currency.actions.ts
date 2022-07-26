@@ -2,119 +2,100 @@ import { Action, createAction, props } from '@ngrx/store';
 import { Currency } from 'src/app/Modules/currency/currency.model';
 import { CurrencyViewModel } from 'src/app/Modules/currency/currencyViewModel';
  
+
 export enum currencyActionTypes {
-  LOAD_CURRENCY_REQUEST = '[Currency] Load Currency Request',
-  LOAD_CURRENCY_FAILURE = '[Currency] Load Currency Failure',
-  LOAD_CURRENCY_SUCCESS = '[Currency] Load Currency Success',
- 
-  LOAD_REQUEST = '[Currency] Load Request',
-  LOAD_FAILURE = '[Currency] Load Failure',
-  LOAD_SUCCESS = '[Currency] Load Success',
- 
-  SAVE_REQUEST = '[Currency] Save',
-  SAVE_FAILURE = '[Currency] Save Failure',
-  SAVE_SUCCESS = '[Currency] Save Success',
- 
-  UPDATE_REQUEST = '[Currency] Update',
-  UPDATE_FAILURE = '[Currency] Update Failure',
-  UPDATE_SUCCESS = '[Currency] Update Success',
- 
-  DELETE_REQUEST = '[Currency] Delete',
-  DELETE_FAILURE = '[Currency] Delete Failure',
-  DELETE_SUCCESS = '[Currency] Delete Success'
+  loadCurrenciesRequestAction
 }
 export const loadCurrencyRequestAction = createAction(
-  currencyActionTypes.LOAD_CURRENCY_REQUEST,
+ ' [Currency] Load Currency Request',
   props<{ id: number }>()
 );
  
 export const loadCurrencySuccessAction = createAction(
-  currencyActionTypes.LOAD_CURRENCY_FAILURE,
-  props<{ currency: CurrencyViewModel }>()
+  '[Currency] Load Currency Success',
+  props<{ currency: Currency }>()
 );
  
 export const loadCurrencyFailureAction = createAction(
-  currencyActionTypes.LOAD_CURRENCY_SUCCESS,
+  '[Currency] Load Currency Failure',
   props<{ error: string }>()
 );
  
  
-export const loadRequestAction = createAction(
-  currencyActionTypes.LOAD_REQUEST
+export const loadCurrenciesRequestAction = createAction(
+  'Load Currencies Request'
 );
  
-export const loadFailureAction = createAction(
-  currencyActionTypes.LOAD_FAILURE,
+export const loadCurrenciesFailureAction = createAction(
+  '[Currency] Load Currencies Failure',
   props<{ error: string }>()
 );
  
-export const loadSuccessAction = createAction(
-  currencyActionTypes.LOAD_SUCCESS,
+export const loadCurrenciesSuccessAction = createAction(
+  '[Currency] Load Currencies  Success',
   props<{ items: Currency[] }>()
 );
  
-
- 
-export const saveRequestAction = createAction(
-  currencyActionTypes.SAVE_REQUEST,
+export const createCurrencyRequestAction = createAction(
+  '[Currency] Create Currency  Request',
   props<{ item: CurrencyViewModel }>()
 );
  
-export const saveFailureAction = createAction(
-  currencyActionTypes.SAVE_FAILURE,
+export const createCurrencyFailureAction = createAction(
+  '[Currency] create currency failure',
   props<{ error: string }>()
 );
  
-export const saveSuccessAction = createAction(
-  currencyActionTypes.SAVE_SUCCESS,
-  props<{ item: CurrencyViewModel }>()
+export const createCurrencySuccessAction = createAction(
+  '[Currency] Create Currency Success',
+  props<{ item: Currency }>()
 );
 
-export const updateRequestAction = createAction(
-  currencyActionTypes.UPDATE_REQUEST,
+export const updateCurrencyRequestAction = createAction(
+  '[Currency] Update Currency Success',
   props<{ item: CurrencyViewModel,id:number }>()
 );
  
-export const updateFailureAction = createAction(
-  currencyActionTypes.UPDATE_FAILURE,
+export const updateCurrencyFailureAction = createAction(
+  '[Currency] Update Currency Success',
   props<{ error: string }>()
 );
  
-export const updateSuccessAction = createAction(
-  currencyActionTypes.UPDATE_SUCCESS,
-  props<{ item: CurrencyViewModel}>()
+export const updateCurrencySuccessAction = createAction(
+  '[Currency] Update Currency Success',
+  props<{ item: Currency}>()
 );
    
 
  
-export const deleteRequestAction = createAction(
-  currencyActionTypes.DELETE_REQUEST,
+export const deleteCurrencyRequestAction = createAction(
+  '[Currency] Delete Currency Request',
   props<{ id: number }>()
 );
  
-export const deleteFailureAction = createAction(
-  currencyActionTypes.DELETE_FAILURE,
+export const deleteCurrencyFailureAction = createAction(
+  '[Currency] Delete Currency failure',
   props<{ error: string }>()
 );
    
-export const deleteSuccessAction = createAction(
-  currencyActionTypes.DELETE_SUCCESS,
+export const deleteCurrencySuccessAction = createAction(
+  '[Currency] Delete Currency Success',
   props<{ id: number }>()
 );
 export const CurrencyActions = {
   loadCurrencyRequestAction,
   loadCurrencySuccessAction,
   loadCurrencyFailureAction,
-  loadRequestAction,
-  loadFailureAction,
-  loadSuccessAction,
-  saveRequestAction,
-  saveFailureAction,
-  saveSuccessAction,
-  updateRequestAction,
-  updateFailureAction,
-  updateSuccessAction,
-  deleteRequestAction,
-  deleteFailureAction,
-  deleteSuccessAction,
+  loadCurrenciesRequestAction,
+  loadCurrenciesFailureAction,
+  loadCurrenciesSuccessAction,
+  createCurrencyRequestAction,
+  createCurrencyFailureAction,
+  createCurrencySuccessAction,
+  updateCurrencyRequestAction,
+  updateCurrencyFailureAction,
+  updateCurrencySuccessAction,
+  deleteCurrencyRequestAction,
+  deleteCurrencyFailureAction,
+  deleteCurrencySuccessAction,
 };

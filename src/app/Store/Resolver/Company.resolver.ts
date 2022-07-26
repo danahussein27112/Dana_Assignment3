@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
 import { createSelector, select, Store } from "@ngrx/store";
-import { companyActionTypes, loadCompanies } from "../Actions/company.actions";
+import { companyActionTypes } from "../Actions/company.actions";
 import { AppState } from "../Reducers";
 import {filter, first, tap} from 'rxjs/operators';
 import { Observable } from "rxjs/internal/Observable";
@@ -17,7 +17,7 @@ return this.store
         select(getIsLoading),
         tap((compainesLoaded) => {
           if (!compainesLoaded) {
- this.store.dispatch(companyActionTypes.loadCompanies()) ;
+ this.store.dispatch(companyActionTypes.loadCompaniesRequestAction()) ;
           }
         }),
         first());

@@ -13,7 +13,7 @@ import { CurrencyRoutingModule } from './currency.routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forFeature('currencies', CurrencyReducer),
+   StoreModule.forFeature('currency', CurrencyReducer),
     EffectsModule.forFeature([CurrencyEffects]),
     CurrencyRoutingModule
   ],

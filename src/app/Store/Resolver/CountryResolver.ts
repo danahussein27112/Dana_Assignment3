@@ -19,7 +19,7 @@ return this.store
         select(getCountryIsLoading),
         tap((countriesLoaded) => {
           if (!countriesLoaded) {
- this.store.dispatch(CountryActions.loadRequestAction()) ;
+ this.store.dispatch(CountryActions.loadCountriesRequestAction()) ;
           }
         }),
         first()

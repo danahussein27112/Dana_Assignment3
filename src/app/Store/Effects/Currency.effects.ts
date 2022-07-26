@@ -12,7 +12,6 @@ export class CurrencyEffects {
   loadCurrencyRequestEffect$ = createEffect(() => this.actions$.pipe(
     ofType(currencyActions.loadCurrencyRequestAction),
     switchMap(currencyAction => {
-      const subject = "currency";
       return this.dataService.getcurrecny(currencyAction.id).pipe(
         map((currency: any) => {
           return currencyActions.CurrencyActions.loadCurrencySuccessAction({ currency })
@@ -25,40 +24,39 @@ export class CurrencyEffects {
   ))
 
   loadRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(currencyActions.loadRequestAction),
+    ofType(currencyActions.loadCurrenciesRequestAction),
     switchMap(action => {
       return this.dataService.getCurrencies().pipe(
         map((items: any) => {
-          return currencyActions.loadSuccessAction({ items })
+          return currencyActions.loadCurrenciesSuccessAction({ items })
         }),
         catchError(error => {
-          return observableOf(currencyActions.loadFailureAction({ error }))
+          return observableOf(currencyActions.loadCurrenciesFailureAction({ error }))
         })
       )
     })
   ))
 
   saveRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(currencyActions.saveRequestAction),
+    ofType(currencyActions.createCurrencyRequestAction),
     switchMap(action => {
-      const subject = "currency";
       return this.dataService.savecurrecny(action.item).pipe(
         map((item: any) => {
-          return currencyActions.saveSuccessAction({ item })
+          return currencyActions.createCurrencySuccessAction({ item })
         }), tap(() => this.router.navigateByUrl('/currencies'))
       )
     })
   ))
 
   updateRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(currencyActions.updateRequestAction),
+    ofType(currencyActions.updateCurrencyRequestAction),
     switchMap(action => {
       return this.dataService.update(action.id, action.item).pipe(
         map((item: any) => {
-          return currencyActions.updateSuccessAction({ item })
+          return currencyActions.updateCurrencySuccessAction({ item })
         }), tap(() => this.router.navigateByUrl('/currencies')),
         catchError(error => {
-          return observableOf(currencyActions.updateFailureAction({ error }))
+          return observableOf(currencyActions.updateCurrencyFailureAction({ error }))
         })
       )
     })
@@ -66,7 +64,7 @@ export class CurrencyEffects {
 
   deleteCompany$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(currencyActions.deleteRequestAction),
+      ofType(currencyActions.deleteCurrencyRequestAction),
       concatMap((action: any) => this.dataService.delete(action.id)),
       tap(() => this.router.navigateByUrl('/currencies'))
 

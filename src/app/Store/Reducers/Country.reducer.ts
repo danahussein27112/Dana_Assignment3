@@ -8,7 +8,6 @@ export interface CountryState {
   item: Country[]
   countriesLoaded: boolean;
   selectedCountry: Country | undefined
-  addedCountry: countryViewModel | undefined
 }
 
 export const initialState: CountryState = {
@@ -17,7 +16,6 @@ export const initialState: CountryState = {
   isLoading: true,
   item: [],
   selectedCountry: undefined,
-  addedCountry: undefined
 }
 
 export const countryReducer = createReducer(
@@ -39,71 +37,71 @@ export const countryReducer = createReducer(
     error: error
   })),
 
-  on(CountryActions.loadRequestAction, state => ({
+  on(CountryActions.loadCountryRequestAction, state => ({
     ...state,
     isLoading: true
   })),
 
-  on(CountryActions.loadSuccessAction, (state, action) => ({
+  on(CountryActions.loadCountriesSuccessAction, (state, action) => ({
     ...state,
     isLoading: false,
     countriesLoaded: true,
     item: action.items
   })),
 
-  on(CountryActions.loadFailureAction, (state, { error }) => ({
+  on(CountryActions.loadCountriesFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error
   })),
 
-  on(CountryActions.saveRequestAction, state => ({
+  on(CountryActions.createCountryRequestAction, state => ({
     ...state,
     isLoading: true
   })),
 
-  on(CountryActions.saveSuccessAction, (state, action) => ({
+  on(CountryActions.createCountrySuccessAction, (state, action) => ({
     ...state,
     isLoading: false,
-    addedCountry: action.item,
+    selectedCountry: action.item,
     error: null
   })),
 
-  on(CountryActions.saveFailureAction, (state, { error }) => ({
+  on(CountryActions.createCountryFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error
   })),
 
-  on(CountryActions.updateRequestAction, state => ({
+  on(CountryActions.updateCountryRequestAction, state => ({
     ...state,
     isLoading: true
   })),
 
-  on(CountryActions.updateSuccessAction, (state, action) => ({
+  on(CountryActions.updateCountrySuccessAction, (state, action) => ({
     ...state,
     isLoading: false,
-    addedCountry: action.item,
+    selectedCountry: action.item,
     error: null
   })),
 
-  on(CountryActions.updateFailureAction, (state, { error }) => ({
+  on(CountryActions.updateCountryFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error
   })),
 
-  on(CountryActions.deleteRequestAction, state => ({
+  on(CountryActions.deleteCountryRequestAction, state => ({
     ...state,
     isLoading: true
   })),
 
-  on(CountryActions.deleteSuccessAction, (state, { id }) => ({
+  on(CountryActions.deleteCountrySuccessAction, (state, { id }) => ({
     ...state,
     isLoading: false,
   })),
 
-  on(CountryActions.deleteFailureAction, (state, { error }) => ({
+  on(CountryActions.deleteCountryFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error

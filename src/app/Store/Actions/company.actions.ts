@@ -4,64 +4,63 @@ import { Company } from 'src/app/Modules/company/company.model';
 import { CompanyViewModel } from 'src/app/Modules/company/company.ViewModel';
 
 
-export const loadCompanies = createAction(
-  '[Companies] Load Companies via Service',
+export const loadCompaniesRequestAction = createAction(
+  '[Companies] Load Companies Request',
 );
 
-export const companiesLoaded = createAction(
+export const loadCompaniesSuccessAction= createAction(
   '[Companies ] Companies Loaded Successfully',
   props<{items: Company[]}>()
 );
-export const loadFailureAction = createAction(
+export const loadCompainesFailureAction = createAction(
   '[Company ] Load Company Failure',
   props<{ error: string }>()
 );
  
 
-export const createCompany = createAction(
-  '[Create Company ] Create Company',
+export const createCompanyRequestAction = createAction(
+  '[Create Company ] Create Company Request',
   props<{items: CompanyViewModel}>()
 );
-export const createFailureAction = createAction(
-'[Create Company ] Create Failure'
+export const createCompanyFailureAction = createAction(
+'[Create Company ] Create Company Failure'
 ,  props<{ error: string }>()
 );
  
-export const createSuccessAction = createAction(
-  '[Create Company ] Create Success',
-  props<{ items: CompanyViewModel }>()
+export const createCompanySuccessAction = createAction(
+  '[Create Company ] Create Company Success',
+  props<{ items: Company }>()
 );
-export const deleteFailureAction = createAction(
-  '[Delete Company ] Delete Failure',
+export const deleteCompanyFailureAction = createAction(
+  '[Delete Company ] Delete Company Failure',
   props<{ error: string }>()
 );
    
-export const deleteSuccessAction = createAction(
-  '[Delete Company ] Delete Success',
-  props<{ id: number }>()
+export const deleteCompanySuccessAction = createAction(
+  '[Delete Company ] Delete Company Success',
 );
 
-export const deleteCompany = createAction(
-  ' Delete Company',
+export const deleteCompanyRequestAction = createAction(
+  ' Delete Company request',
   props<{id: number}>()
 );
 
-export const updateCompany = createAction(
-  'Update Company',
+export const updateCompanyRequestAction = createAction(
+  'Update Company request',
   props<{items: CompanyViewModel,id:number}>()
 );
-export const updateFailureAction = createAction(
+export const updateCompanyFailureAction = createAction(
   ' Update Company Failure',
   props<{ error: string }>()
 );
  
-export const updateSuccessAction = createAction(
+export const updateCompanySuccessAction = createAction(
   'Update Company Success',
-  props<{ items: CompanyViewModel }>()
+  props<{ items: Company }>()
 );
 export const loadCompanyRequestAction = createAction(
-  '[get Company request]',
-  props<{ id: number }>()
+  'get Company request',
+  props<{ id: number|any }>()
 );
  
 export const loadCompanySuccessAction = createAction(
@@ -70,24 +69,24 @@ export const loadCompanySuccessAction = createAction(
 );
  
 export const loadCompanyFailureAction = createAction(
-  'get Company failed',
+  'get Company failure',
   props<{ error: string }>()
 );
 
 export const companyActionTypes = {
-  loadCompanies,
-  companiesLoaded,
-  loadFailureAction,
-  loadCompanyRequestAction,
+  loadCompaniesRequestAction,
+  loadCompaniesSuccessAction,
   loadCompanyFailureAction,
+  loadCompanyRequestAction,
+  loadCompainesFailureAction,
   loadCompanySuccessAction,
-  createCompany,
-  createFailureAction,
-  createSuccessAction,
-  deleteCompany,
-  deleteFailureAction,
-  deleteSuccessAction,
-  updateCompany,
-  updateFailureAction,
-  updateSuccessAction
+  createCompanyRequestAction,
+  createCompanyFailureAction,
+  createCompanySuccessAction,
+  deleteCompanyRequestAction,
+  deleteCompanyFailureAction,
+  deleteCompanySuccessAction,
+  updateCompanyRequestAction,
+  updateCompanyFailureAction,
+  updateCompanySuccessAction
 };

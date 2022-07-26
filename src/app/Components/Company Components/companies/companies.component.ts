@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { Company } from 'src/app/Modules/company/company.model';
 import { Country } from 'src/app/Modules/country/country.model';
-import { companyActionTypes, loadCompanies } from 'src/app/Store/Actions/company.actions';
-import { CountryActions } from 'src/app/Store/Actions/Country.actions';
+import { companyActionTypes } from 'src/app/Store/Actions/company.actions';
 import { AppState } from 'src/app/Store/Reducers';
-import { getAllCompanies, getIsLoading,getError } from 'src/app/Store/Selectors/Company.selector';
-import { getCountries, getCountryIsLoading } from 'src/app/Store/Selectors/Country.selector';
+import { getAllCompanies, getIsLoading, getError } from 'src/app/Store/Selectors/Company.selector';
 
 @Component({
   selector: 'app-companies',
@@ -22,39 +21,32 @@ export class CompaniesComponent implements OnInit {
   isLoading$?: Observable<boolean>;
   error$?: Observable<any>;
   countries$?: Observable<Country[]>;
-  constructor(private store: Store<AppState>,private router:Router) { }
+  constructor(private store: Store<AppState>, private router: Router) { }
 
-
+  @ViewChild(MatSort) sort?: MatSort;
   ngOnInit() {
 
-    this.store.dispatch(companyActionTypes.loadCompanies());
+    this.store.dispatch(companyActionTypes.loadCompaniesRequestAction());
     this.isLoading$ = this.store.select(getIsLoading);
 
     this.store.select(getAllCompanies).subscribe(items => {
-      this.companies$ = of(items) 
-   
-     })
-     this.error$ = this.store.select(getError);
-     this.store.dispatch(CountryActions.loadRequestAction());
-     this.isLoading$ = this.store.select(getCountryIsLoading);
- 
-     this.store.select(getCountries).subscribe(items => {
-       this.countries$ = of(items);
-       this.store.dispatch(CountryActions.loadSuccessAction({items}))
-  })}
+      this.companies$ = of(items)
+    },
+    )
+    this.error$ = this.store.select(getError);
+  }
+
 
   delete(id: number) {
     if (confirm('Are you sure do you want to delete this company?')) {
-    this.store.dispatch(companyActionTypes.deleteCompany({ id }));
-    this.store.dispatch(companyActionTypes.deleteSuccessAction({id}));
-    this.onRefresh();
-    window.location.reload();  
-  }}
-  onRefresh()
-  {
-      this.store.dispatch(companyActionTypes.loadCompanies());
+      this.store.dispatch(companyActionTypes.deleteCompanyRequestAction({ id }));
+      this.onRefresh();
+    }
   }
-  selectById(id:number) {
-      this.router.navigate(['company-detail/'+ id]);     
+  onRefresh() {
+    this.store.dispatch(companyActionTypes.loadCompaniesRequestAction());
+  }
+  selectById(id: number) {
+    this.router.navigate(['company-detail/' + id]);
   }
 }

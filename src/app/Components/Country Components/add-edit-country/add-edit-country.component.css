@@ -1,7 +1,13 @@
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-input[type=text], select, textarea {
+* {
+  box-sizing: border-box;
+}
+
+input[type=text],
+textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -10,6 +16,7 @@ input[type=text], select, textarea {
   margin-top: 6px;
   margin-bottom: 16px;
   resize: vertical;
+  align-items: center;
 }
 
 input[type=submit] {

@@ -20,7 +20,7 @@ export class CurrenciesComponent implements OnInit {
 
   ngOnInit() {
 
-    this.store.dispatch(CurrencyActions.loadRequestAction());
+    this.store.dispatch(CurrencyActions.loadCurrenciesRequestAction());
     this.isLoading$ = this.store.select(getCurrencyIsLoading);
     this.store.select(getCurrencies).subscribe(items => {
       this.currencies$ = of(items);
@@ -31,9 +31,9 @@ export class CurrenciesComponent implements OnInit {
 
   delete(id: number) {
     if (confirm('Are you sure do you want to delete this currency?')) {
-      this.store.dispatch(CurrencyActions.deleteRequestAction({ id }));
-      this.store.dispatch(CurrencyActions.deleteSuccessAction({ id }));
-      window.location.reload();
+      this.store.dispatch(CurrencyActions.deleteCurrencyRequestAction({ id }));
+     //this.store.dispatch(CurrencyActions.deleteCurrencySuccessAction({id}));
+     // window.location.reload();
 
     }
   }

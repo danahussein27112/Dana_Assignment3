@@ -14,7 +14,7 @@ import { getCountries, getCountryIsLoading } from 'src/app/Store/Selectors/Curre
 })
 export class CurrencyCountreisComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private store: Store<AppState>,private router:Router) { }
+  constructor(private route: ActivatedRoute, private store: Store<AppState>, private router: Router) { }
   countries$?: Observable<currencyCountreis[]>;
   isLoading$?: Observable<boolean>;
 

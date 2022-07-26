@@ -25,67 +25,58 @@ export class CountryEffects {
   ))
 
   loadRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(countryActions.loadRequestAction),
-    switchMap(action => {
+    ofType(countryActions.loadCountriesRequestAction),
+    switchMap(() => {
       return this.dataService.getCountries().pipe(
         map((items: any) => {
-          return countryActions.loadSuccessAction({ items })
+          return countryActions.loadCountriesSuccessAction({ items })
         }),
         catchError(error => {
-          return observableOf(countryActions.loadFailureAction({ error }))
+          return observableOf(countryActions.loadCountriesFailureAction({ error }))
         })
       )
     })
   ))
 
-  saveRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(countryActions.saveRequestAction),
+  CreateRequestEffect$ = createEffect(() => this.actions$.pipe(
+    ofType(countryActions.createCountryRequestAction),
     switchMap(action => {
-      const subject = "country";
       return this.dataService.create(action.item).pipe(
         map((item: any) => {
-          return countryActions.saveSuccessAction({ item })
+          return countryActions.createCountrySuccessAction({ item })
         }), tap(() => this.router.navigateByUrl('/countries'))
         ,
         catchError(error => {
-          return observableOf(countryActions.saveFailureAction({ error }))
+          return observableOf(countryActions.createCountryFailureAction({ error }))
         })
       )
     })
   ))
-  //   createCountry$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(countryActions.saveRequestAction),
-  //     concatMap((action:any) => this.dataService.create(action.items)),
-  //     tap(() => this.router.navigateByUrl('/countries'))
-  //   ),
-  //   {dispatch: false}
-  // );
 
   updateRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(countryActions.updateRequestAction),
+    ofType(countryActions.updateCountryRequestAction),
     switchMap(action => {
       return this.dataService.update(action.id, action.item).pipe(
         map((item: any) => {
-          return countryActions.updateSuccessAction({ item })
+          return countryActions.updateCountrySuccessAction({ item })
         }), tap(() => this.router.navigateByUrl('/countries'))
         ,
         catchError(error => {
-          return observableOf(countryActions.updateFailureAction({ error }))
+          return observableOf(countryActions.updateCountryFailureAction({ error }))
         })
       )
     })
   ))
 
   deleteRequestEffect$ = createEffect(() => this.actions$.pipe(
-    ofType(countryActions.deleteRequestAction),
+    ofType(countryActions.deleteCountryRequestAction),
     switchMap(action => {
       return this.dataService.delete(action.id).pipe(
-        map((item: any) => {
-          return countryActions.deleteSuccessAction({ id: action.id })
+        map(() => {
+          return countryActions.deleteCountrySuccessAction({ id: action.id })
         }),
         catchError(error => {
-          return observableOf(countryActions.deleteFailureAction({ error }))
+          return observableOf(countryActions.deleteCountryFailureAction({ error }))
         })
       )
     })

@@ -1,34 +1,40 @@
-#countries {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-#countries td, #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #countries tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #countries tr:hover {background-color: #ddd;}
-  
-  #countries th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
-  }
-  .button {
-    background-color: #315a33; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 13px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+#currencies {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#currencies td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#currencies tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#currencies tr:hover {
+  background-color: #ddd;
+}
+
+#currencies th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #1e53b5;
+  color: white;
+}
+
+.button {
+  background-color: white;
+  border: none;
+  color: hwb(0 4% 96%);
+  padding: 10px 10px;
+  text-align: right;
+  font-size: 13px;
+  margin: 4px 2px 2px;
+  cursor: pointer;
+  align-items: center;
+  float: right;
+}

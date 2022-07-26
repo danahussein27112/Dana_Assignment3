@@ -15,7 +15,7 @@ import { CompanyRoutingModule } from './company.routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    StoreModule.forFeature('companies', companyReducer),
+    StoreModule.forFeature('company', companyReducer),
     EffectsModule.forFeature([CompanyEffects]),
     CompanyRoutingModule
   ],

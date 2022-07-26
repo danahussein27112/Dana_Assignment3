@@ -7,7 +7,8 @@ export interface CurrencyState {
   isLoading: boolean;
   item: Currency[]
   CurrencyLoaded: boolean;
-  selectedCurrency: CurrencyViewModel | undefined
+  selectedCurrency: Currency | undefined
+  selectedId:number 
 }
 
 export const initialState: CurrencyState = {
@@ -15,7 +16,9 @@ export const initialState: CurrencyState = {
   CurrencyLoaded: false,
   isLoading: true,
   item: [],
-  selectedCurrency: undefined
+  selectedCurrency: undefined,
+  selectedId:0
+  
 }
 
 export const CurrencyReducer = createReducer(
@@ -37,70 +40,81 @@ export const CurrencyReducer = createReducer(
     error: error
   })),
 
-  on(CurrencyActions.loadRequestAction, state => ({
+  on(CurrencyActions.loadCurrenciesRequestAction, state => ({
     ...state,
     isLoading: true
   })),
 
-  on(CurrencyActions.loadSuccessAction, (state, action) => ({
+  on(CurrencyActions.loadCurrenciesSuccessAction, (state, action) => ({
     ...state,
     isLoading: false,
     item: action.items
   })),
 
-  on(CurrencyActions.loadFailureAction, (state, { error }) => ({
+  on(CurrencyActions.loadCurrenciesFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error
   })),
 
-  on(CurrencyActions.saveRequestAction, state => ({
+  on(CurrencyActions.createCurrencyRequestAction, state => ({
     ...state,
     isLoading: true
   })),
 
-  on(CurrencyActions.saveSuccessAction, (state, action) => ({
+  on(CurrencyActions.createCurrencySuccessAction, (state, action) => ({
     ...state,
     isLoading: false,
     selectedCurrency: action.item,
     error: null
   })),
 
-  on(CurrencyActions.saveFailureAction, (state, { error }) => ({
+  on(CurrencyActions.createCurrencyFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error
   })),
 
-  on(CurrencyActions.updateRequestAction, state => ({
+  on(CurrencyActions.updateCurrencyRequestAction, state => ({
     ...state,
     isLoading: true
   })),
 
-  on(CurrencyActions.updateSuccessAction, (state, action) => ({
+  on(CurrencyActions.updateCurrencySuccessAction, (state, action) => ({
     ...state,
     isLoading: false,
     selectedCurrency: action.item,
     error: null
   })),
 
-  on(CurrencyActions.updateFailureAction, (state, { error }) => ({
+  on(CurrencyActions.updateCurrencyFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error
   })),
 
-  on(CurrencyActions.deleteRequestAction, state => ({
+  on(CurrencyActions.deleteCurrencyRequestAction, state => ({
     ...state,
     isLoading: true
   })),
 
-  on(CurrencyActions.deleteSuccessAction, (state, { id }) => ({
-    ...state,
-    isLoading: false,
-  })),
-
-  on(CurrencyActions.deleteFailureAction, (state, { error }) => ({
+  on(CurrencyActions.deleteCurrencySuccessAction, (state) => {
+    const deletedCompanyId = state.selectedId;
+    const companyItems :Currency[] = Object.assign([], state.item);
+    const Index = companyItems.findIndex(x => x.id === deletedCompanyId)
+    companyItems.forEach((element, Index) => {
+      if(element.id == deletedCompanyId) {
+          companyItems.splice(Index);     
+      }
+  });
+    return {
+      ...state,
+      isLoading: false,
+      isLoaded:true,
+      error: null
+    };
+  }),
+  on(CurrencyActions.deleteCurrencyFailureAction, (state, { error }) => ({
     ...state,
     isLoading: false,
     error: error

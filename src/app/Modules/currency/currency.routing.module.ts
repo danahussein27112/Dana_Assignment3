@@ -1,13 +1,12 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AddEditCurrencyComponent } from "src/app/Components/Currency Components/add-edit-currency/add-edit-currency.component";
 import { CurrenciesComponent } from "src/app/Components/Currency Components/currencies/currencies.component";
-import { CurrencyCreateComponent } from "src/app/Components/Currency Components/currency-create/currency-create.component";
-import { CurrencyDetailComponent } from "src/app/Components/Currency Components/currency-detail/currency-detail.component";
 
 const routes: Routes = [
-    {path :'create-currency',component:CurrencyCreateComponent},
+    {path :'create-currency',component:AddEditCurrencyComponent},
     {path : 'currencies',component:CurrenciesComponent},
-    {path:'currency-detail/:id', component:CurrencyDetailComponent},
+    {path:'currency-detail/:id', component:AddEditCurrencyComponent},
   ];
   
   @NgModule({

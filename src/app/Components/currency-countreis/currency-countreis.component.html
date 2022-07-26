@@ -2,12 +2,14 @@
 <table id="countries">
   <tr>
     <th> Country Name</th>
-    <th>Actions</th>
+    <th>Edit</th>
   </tr>
   <tr *ngFor="let entity of countries$ | async ">
 
     <td>{{entity.country.name}}</td>
-    <button type="submit" class="btn btn-success" (click)="selectById(entity.country.id)">Edit</button> 
+    <button type="submit" (click)="selectById(entity.id)" title="Edit"><img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpAyw7TK8OpqoWdMpCRbRa-X2xmWAsx2AIEw&usqp=CAU"
+        height="30" width="30"></button>
 
   </tr>
 </table>
